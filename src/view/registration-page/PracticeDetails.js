@@ -24,6 +24,10 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 
+import HorizontalLinearStepper from "../../stepper";
+import setActiveStep from "../../stepper";
+
+import { stepperClasses } from "@mui/material";
 function Copyright(props) {
 	return (
 		<Typography
@@ -55,6 +59,8 @@ export default function PracticeDetails() {
 		// 	password: data.get("password"),
 		// });
 	};
+
+	setActiveStep(2);
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -216,7 +222,9 @@ export default function PracticeDetails() {
 				</Grid>
 			</Grid>
 
-
+			<HorizontalLinearStepper>
+				
+			</HorizontalLinearStepper>
 			</Grid>
 		</ThemeProvider>
 	);

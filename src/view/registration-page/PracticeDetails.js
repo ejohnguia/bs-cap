@@ -15,6 +15,15 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+
 function Copyright(props) {
 	return (
 		<Typography
@@ -25,7 +34,7 @@ function Copyright(props) {
 		>
 			{"Copyright © "}
 			<Link color="inherit" href="https://mui.com/">
-				Your Website
+				Brightsquid
 			</Link>{" "}
 			{new Date().getFullYear()}
 			{"."}
@@ -36,119 +45,178 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function PracticeDetails() {
-	const handleSubmit = (event) => {
+
+	// TO-DO: connect to previous page
+	const handleBack = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get("email"),
-			password: data.get("password"),
-		});
+		// console.log({
+		// 	email: data.get("email"),
+		// 	password: data.get("password"),
+		// });
 	};
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Grid container component="main" sx={{ height: "100vh" }}>
-				<CssBaseline />
-				<Grid
-					item
-					xs={false}
-					sm={4}
-					md={7}
-					sx={{
-						backgroundImage:
-							"url(https://source.unsplash.com/random)",
-						backgroundRepeat: "no-repeat",
-						backgroundColor: (t) =>
-							t.palette.mode === "light"
-								? t.palette.grey[50]
-								: t.palette.grey[900],
-						backgroundSize: "cover",
-						backgroundPosition: "center",
-					}}
-				/>
-				<Grid
-					item
-					xs={12}
-					sm={8}
-					md={5}
-					component={Paper}
-					elevation={6}
-					square
-				>
-					<Box
-						sx={{
-							my: 8,
-							mx: 4,
-							display: "flex",
-							flexDirection: "column",
-							alignItems: "center",
-						}}
-					>
-						<Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-							<LockOutlinedIcon />
-						</Avatar>
-						<Typography component="h1" variant="h5">
-							Sign in
-						</Typography>
-						<Box
-							component="form"
-							noValidate
-							onSubmit={handleSubmit}
-							sx={{ mt: 1 }}
-						>
-							<TextField
-								margin="normal"
-								required
-								fullWidth
-								id="email"
-								label="Email Address"
-								name="email"
-								autoComplete="email"
-								autoFocus
-							/>
-							<TextField
-								margin="normal"
-								required
-								fullWidth
-								name="password"
-								label="Password"
-								type="password"
-								id="password"
-								autoComplete="current-password"
-							/>
-							<FormControlLabel
-								control={
-									<Checkbox
-										value="remember"
-										color="primary"
-									/>
-								}
-								label="Remember me"
-							/>
-							<Button
-								type="submit"
-								fullWidth
-								variant="contained"
-								sx={{ mt: 3, mb: 2 }}
-							>
-								Sign In
-							</Button>
-							<Grid container>
-								<Grid item xs>
-									<Link href="#" variant="body2">
-										Forgot password?
-									</Link>
-								</Grid>
-								<Grid item>
-									<Link href="#" variant="body2">
-										{"Don't have an account? Sign Up"}
-									</Link>
-								</Grid>
-							</Grid>
-							<Copyright sx={{ mt: 5 }} />
-						</Box>
-					</Box>
+			<Grid container component="main" sx={{ height: "100vh" }}  marginLeft={4}>
+				<Typography variant="h5" mt={4}>
+					Practice Details
+				</Typography>
+				
+			{/* Practice Name and Practice Phone */ }			
+			<Grid container spacing={6}>
+				<Grid item xs={2}>
+					<Typography variant="body1" mt={7} >
+						<strong> Practice Details</strong> 
+					</Typography>
 				</Grid>
+				
+				<Grid item xs={3}>
+					<Typography variant="body1"> Practice Name </Typography>
+					<TextField
+						margin="normal"
+						fullWidth
+						id="practice_name"
+						label="Practice Name"
+						name="practice_name"
+						autoFocus
+					/>
+				</Grid>
+				<Grid item xs={3}>
+					<Typography variant="body1"> Practice Phone </Typography>
+					<TextField
+						margin="normal"
+						fullWidth
+						name="practice_phone"
+						label="Practice Phone"
+						id="practice_phone"
+					/>
+				</Grid>
+			</Grid>
+			
+			{/* Clinic Type and Clinic sub type */ }					
+			<Grid container spacing={6}>
+				<Grid item xs={2}>
+					{/* Empty space to align*/}
+				</Grid>
+				<Grid item xs={3}>
+					<Typography  mb={2}>Clinic Type</Typography>
+					<FormControl fullWidth>
+					<InputLabel>Clinic Type</InputLabel>
+					{/* TO-DO: fill with actual data */}
+					<Select id="clinic-select" label="Clinic Type">
+						<MenuItem value={10}>Dentist</MenuItem>
+						<MenuItem value={20}>Family care</MenuItem>
+						<MenuItem value={30}>Hospital</MenuItem>
+					</Select>
+					</FormControl>
+				</Grid>
+				<Grid item xs={3}>
+					<Typography  mb={2}>Clinic Subtype</Typography>
+					<FormControl fullWidth>
+					<InputLabel> Clinic Subtype </InputLabel>
+					{/* TO-DO: fill with actual data */}
+					<Select id="country-select" label="Clinic Subtype">
+						<MenuItem value={10}>subtype</MenuItem>
+						<MenuItem value={20}>subtype</MenuItem>
+						<MenuItem value={30}>subtype</MenuItem>
+					</Select>
+					</FormControl>
+				</Grid>
+
+		
+			</Grid>
+			{/* PRACTICE ADDRESS: Country, State/province and City */ }
+			<Grid container spacing={6}>
+				<Grid item xs={2}>
+					<Typography variant="body1"  mt={7}> <strong> Practice Address </strong>  </Typography>
+				</Grid>
+		
+				<Grid item xs={3}>
+					<Typography  mb={2}>Country</Typography>
+					<FormControl fullWidth>
+					<InputLabel> Country </InputLabel>
+					{/* TO-DO: fill with actual data */}
+					<Select id="country-select" label="Country">
+						<MenuItem value={10}>Canada</MenuItem>
+						<MenuItem value={20}>Canada</MenuItem>
+						<MenuItem value={30}>Canada</MenuItem>
+					</Select>
+					</FormControl>
+				</Grid>
+				<Grid item xs={3}>
+					<Typography  mb={2}>Province</Typography>
+					<FormControl fullWidth>
+					<InputLabel> Province </InputLabel>
+					{/* TO-DO: fill with actual data */}
+					<Select id="province-select" label="Province">
+						<MenuItem value={10}>Alberta</MenuItem>
+						<MenuItem value={20}>Ontario</MenuItem>
+						<MenuItem value={30}>British Columbia</MenuItem>
+					</Select>
+					</FormControl>
+				</Grid>
+				<Grid item xs={3}>
+					<Typography  mb={2}>City</Typography>
+					<FormControl fullWidth>
+					<InputLabel> Province </InputLabel>
+					{/* TO-DO: fill with actual data */}
+					<Select id="province-select" label="Province">
+						<MenuItem value={10}>Alberta</MenuItem>
+						<MenuItem value={20}>Ontario</MenuItem>
+						<MenuItem value={30}>British Columbia</MenuItem>
+					</Select>
+					</FormControl>
+				</Grid>
+			</Grid>
+			
+			{/* ABOUT YOU: Role and Specialty */}
+			<Grid container spacing={6}>
+				<Grid item xs={2}>
+					<Typography variant="body1" mt={7}>  <strong> About you </strong></Typography>
+				</Grid>
+				<Grid item xs={3}>
+						<Typography>Role</Typography>
+						<RadioGroup
+							row
+							aria-labelledby="demo-row-radio-buttons-group-label"
+							name="row-radio-buttons-group">
+							<FormControlLabel value="Clinician" control={<Radio />} label="Clinician" />
+							<FormControlLabel value="Staff" control={<Radio />} label="Staff" />
+						</RadioGroup>
+					</Grid>
+			
+					<Grid item xs={3}>
+						<Typography  mb={2}> Specialty</Typography>
+						<FormControl fullWidth>
+						<InputLabel> Specialty </InputLabel>
+						{/* TO-DO: fill with actual data */}
+						<Select id="specialty-select" label="Specialty">
+							<MenuItem value={10}>specialty</MenuItem>
+							<MenuItem value={20}>specialty</MenuItem>
+							<MenuItem value={30}>specialty</MenuItem>
+						</Select>
+						</FormControl>
+					</Grid>	
+			</Grid>
+		
+			<Grid container spacing={6}>
+				<Grid item xs={6}>
+					<Button>
+						Back
+					</Button>
+				</Grid>
+				<Grid item xs={6}>
+					<Button>
+						Do Later
+					</Button>
+					<Button>
+						Continue
+					</Button>
+				</Grid>
+			</Grid>
+
+
 			</Grid>
 		</ThemeProvider>
 	);

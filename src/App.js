@@ -6,7 +6,7 @@ import Welcome from "./view/welcome-page/Welcome";
 import Registration from "./view/registration-page/Registration";
 import PracticeDetails from "./view/registration-page/PracticeDetails";
 import SignInSide from "./view/sign-in-page/SignInSide";
-import Error from "./view/error-page/Error";
+// import Error from "./view/error-page/Error"; // error?
 
 import "./App.css";
 
@@ -21,7 +21,7 @@ function App() {
 				element={<PracticeDetails />}
 			/>
 			<Route exact path="/sign-in" element={<SignInSide />} />
-			<Route path="*" element={<Error />} />
+			{/* <Route path="*" element={<Error />} /> */}
 		</Routes>
 	);
 }

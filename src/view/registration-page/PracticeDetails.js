@@ -49,7 +49,6 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function PracticeDetails() {
-
 	// TO-DO: connect to previous page
 	const handleBack = (event) => {
 		event.preventDefault();

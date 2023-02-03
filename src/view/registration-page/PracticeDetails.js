@@ -1,5 +1,7 @@
 /** @format */
 
+import brightsquidLogo from '../../img/brightsquid_logo.PNG';
+
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -59,18 +61,24 @@ export default function PracticeDetails() {
 		// });
 	};
 
-	setActiveStep(2);
-
 	return (
 		<ThemeProvider theme={theme}>
 			<Grid container component="main" sx={{ height: "100vh" }}  marginLeft={4}>
-				<Typography variant="h5" mt={4}>
-					Practice Details
-				</Typography>
-				
+				<Grid container spacing={12}>
+					<Grid item xs={8} mt={4}>s
+						<Typography variant="h5">
+							Practice Details
+						</Typography>
+					</Grid>
+					<Grid item xs={4} mt={4}>
+						<img src={brightsquidLogo} width={141.8} height={30.8} alt="brightsquid"/>
+					</Grid>
+				</Grid>
 			{/* Practice Name and Practice Phone */ }			
 			<Grid container spacing={6}>
+
 				<Grid item xs={2}>
+
 					<Typography variant="body1" mt={7} >
 						<strong> Practice Details</strong> 
 					</Typography>
@@ -97,8 +105,12 @@ export default function PracticeDetails() {
 						id="practice_phone"
 					/>
 				</Grid>
+				<Grid item xs={3} mt={5} >
+					<Typography variant="body1"> You are joining 150 other dental clinics in Calgary! </Typography>
+					
+				</Grid>
 			</Grid>
-			
+
 			{/* Clinic Type and Clinic sub type */ }					
 			<Grid container spacing={6}>
 				<Grid item xs={2}>
@@ -186,8 +198,8 @@ export default function PracticeDetails() {
 							row
 							aria-labelledby="demo-row-radio-buttons-group-label"
 							name="row-radio-buttons-group">
-							<FormControlLabel value="Clinician" control={<Radio />} label="Clinician" />
-							<FormControlLabel value="Staff" control={<Radio />} label="Staff" />
+							<FormControlLabel value="Clinician" control={<Radio/>} label="Clinician" />
+							<FormControlLabel value="Staff" control={<Radio/>} label="Staff" />
 						</RadioGroup>
 					</Grid>
 			
@@ -205,7 +217,7 @@ export default function PracticeDetails() {
 					</Grid>	
 			</Grid>
 		
-			<Grid container spacing={6}>
+			{/* <Grid container spacing={6}>
 				<Grid item xs={6}>
 					<Button>
 						Back
@@ -219,11 +231,9 @@ export default function PracticeDetails() {
 						Continue
 					</Button>
 				</Grid>
-			</Grid>
+			</Grid> */}
+				<HorizontalLinearStepper> </HorizontalLinearStepper>
 
-			<HorizontalLinearStepper>
-				
-			</HorizontalLinearStepper>
 			</Grid>
 		</ThemeProvider>
 	);

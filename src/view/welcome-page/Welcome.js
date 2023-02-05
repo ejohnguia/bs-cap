@@ -15,27 +15,15 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function Copyright(props) {
-	return (
-		<Typography
-			variant="body2"
-			color="text.secondary"
-			align="center"
-			{...props}
-		>
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Your Website
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
+// Assets
+import Copyright from "../assets/props/Copyrights.js";
 
 const theme = createTheme();
 
 export default function Welcome() {
+	const backgroundImage =
+		"url(https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)";
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
@@ -55,8 +43,7 @@ export default function Welcome() {
 					sm={4}
 					md={7}
 					sx={{
-						backgroundImage:
-							"url(https://source.unsplash.com/random)",
+						backgroundImage: backgroundImage,
 						backgroundRepeat: "no-repeat",
 						backgroundColor: (t) =>
 							t.palette.mode === "light"
@@ -131,7 +118,7 @@ export default function Welcome() {
 								variant="contained"
 								sx={{ mt: 3, mb: 2 }}
 							>
-								Sign In
+								Next
 							</Button>
 							<Grid container>
 								<Grid item xs>
@@ -145,8 +132,8 @@ export default function Welcome() {
 									</Link>
 								</Grid>
 							</Grid>
-							<Copyright sx={{ mt: 5 }} />
 						</Box>
+						<Copyright sx={{ mt: 5, bottom: 0 }} />
 					</Box>
 				</Grid>
 			</Grid>

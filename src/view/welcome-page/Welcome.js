@@ -52,7 +52,11 @@ export default function Welcome() {
 						backgroundSize: "cover",
 						backgroundPosition: "center",
 					}}
-				/>
+				>
+					<Typography component="h1" variant="h1">
+						THIS IS A TEST
+					</Typography>
+				</Grid>
 				<Grid
 					item
 					xs={12}

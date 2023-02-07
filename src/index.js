@@ -3,14 +3,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-// import App from './App';
-import SignInSide from "./view/sign-in-page/SignInSide";
+import App from "./App";
+import Welcome from "./view/welcome-page/Welcome";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
-		<SignInSide />
+		<Welcome />
 		{/* <App /> */}
 	</React.StrictMode>
 );

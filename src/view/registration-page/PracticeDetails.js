@@ -65,7 +65,7 @@ export default function PracticeDetails() {
 		<ThemeProvider theme={theme}>
 			<Grid container component="main" sx={{ height: "100vh" }}  marginLeft={4}>
 				<Grid container spacing={12}>
-					<Grid item xs={8} mt={4}>s
+					<Grid item xs={8} mt={4}>
 						<Typography variant="h5">
 							Practice Details
 						</Typography>
@@ -78,7 +78,6 @@ export default function PracticeDetails() {
 			<Grid container spacing={6}>
 
 				<Grid item xs={2}>
-
 					<Typography variant="body1" mt={7} >
 						<strong> Practice Details</strong> 
 					</Typography>
@@ -122,9 +121,10 @@ export default function PracticeDetails() {
 					<InputLabel>Clinic Type</InputLabel>
 					{/* TO-DO: fill with actual data */}
 					<Select id="clinic-select" label="Clinic Type">
-						<MenuItem value={10}>Dentist</MenuItem>
-						<MenuItem value={20}>Family care</MenuItem>
-						<MenuItem value={30}>Hospital</MenuItem>
+						<MenuItem value={0}>Dental</MenuItem>
+						<MenuItem value={0}>Family</MenuItem>
+						<MenuItem value={0}>Hospital</MenuItem>
+						<MenuItem value={0}>Mental Health </MenuItem>
 					</Select>
 					</FormControl>
 				</Grid>
@@ -134,9 +134,9 @@ export default function PracticeDetails() {
 					<InputLabel> Clinic Subtype </InputLabel>
 					{/* TO-DO: fill with actual data */}
 					<Select id="country-select" label="Clinic Subtype">
-						<MenuItem value={10}>subtype</MenuItem>
-						<MenuItem value={20}>subtype</MenuItem>
-						<MenuItem value={30}>subtype</MenuItem>
+						<MenuItem value={10}>Dental Laboratory</MenuItem>
+						<MenuItem value={10}>Dental Laboratory</MenuItem>
+						<MenuItem value={10}>Dental Laboratory</MenuItem>
 					</Select>
 					</FormControl>
 				</Grid>
@@ -156,7 +156,7 @@ export default function PracticeDetails() {
 					{/* TO-DO: fill with actual data */}
 					<Select id="country-select" label="Country">
 						<MenuItem value={10}>Canada</MenuItem>
-						<MenuItem value={20}>Canada</MenuItem>
+						<MenuItem value={20}>United States</MenuItem>
 						<MenuItem value={30}>Canada</MenuItem>
 					</Select>
 					</FormControl>
@@ -168,20 +168,28 @@ export default function PracticeDetails() {
 					{/* TO-DO: fill with actual data */}
 					<Select id="province-select" label="Province">
 						<MenuItem value={10}>Alberta</MenuItem>
-						<MenuItem value={20}>Ontario</MenuItem>
 						<MenuItem value={30}>British Columbia</MenuItem>
+						<MenuItem value={20}>Manitoba</MenuItem>
+						<MenuItem value={20}>New Brunswick</MenuItem>
+						<MenuItem value={20}>Newfoundland and Labrador</MenuItem>
+						<MenuItem value={20}>Nova Scotia</MenuItem>
+						<MenuItem value={20}>Ontario</MenuItem>
+						<MenuItem value={20}>Prince Edward Island</MenuItem>
+						<MenuItem value={20}>Quebec</MenuItem>
+						<MenuItem value={20}>Saskatchewan</MenuItem>
 					</Select>
 					</FormControl>
 				</Grid>
 				<Grid item xs={3}>
 					<Typography  mb={2}>City</Typography>
 					<FormControl fullWidth>
-					<InputLabel> Province </InputLabel>
+					<InputLabel> City </InputLabel>
 					{/* TO-DO: fill with actual data */}
-					<Select id="province-select" label="Province">
-						<MenuItem value={10}>Alberta</MenuItem>
-						<MenuItem value={20}>Ontario</MenuItem>
-						<MenuItem value={30}>British Columbia</MenuItem>
+					<Select id="city-select" label="City">
+						<MenuItem value={10}>Calgary</MenuItem>
+						<MenuItem value={20}>Edmonton</MenuItem>
+						<MenuItem value={30}>City 1</MenuItem>
+						<MenuItem value={40}>City 2</MenuItem>
 					</Select>
 					</FormControl>
 				</Grid>
@@ -216,7 +224,13 @@ export default function PracticeDetails() {
 						</FormControl>
 					</Grid>	
 			</Grid>
-		
+			<Grid container spacing={10}>
+				<Grid item xs={10} mt={10}>
+					<HorizontalLinearStepper> </HorizontalLinearStepper>
+				</Grid>
+			</Grid>
+			{/* <HorizontalLinearStepper> </HorizontalLinearStepper> */}
+
 			{/* <Grid container spacing={6}>
 				<Grid item xs={6}>
 					<Button>
@@ -232,7 +246,6 @@ export default function PracticeDetails() {
 					</Button>
 				</Grid>
 			</Grid> */}
-				<HorizontalLinearStepper> </HorizontalLinearStepper>
 
 			</Grid>
 		</ThemeProvider>

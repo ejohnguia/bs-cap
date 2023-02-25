@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // Assets
 import Copyright from "../assets/props/Copyrights.js";
+import RandomMessage from "../assets/props/RandomMessage.js";
 
 const theme = createTheme();
 
@@ -53,9 +54,7 @@ export default function Welcome() {
 						backgroundPosition: "center",
 					}}
 				>
-					<Typography component="h1" variant="h1">
-						THIS IS A TEST
-					</Typography>
+					<RandomMessage></RandomMessage>
 				</Grid>
 				<Grid
 					item

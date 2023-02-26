@@ -14,19 +14,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // Assets
 import Copyright from "../assets/props/Copyrights.js";
-import MedicalImageList from "../assets/props/MedicalImageList";
+import MedicalPhoto from "../assets/props/MedicalPhoto.js";
 import RandomMessage from "../assets/props/RandomMessage.js";
 import bsLogo from "../assets/images/Q.jpg";
 
 const theme = createTheme();
 
 export default function Welcome() {
-	const backgroundImage = function () {
-		const listSize = Object.keys(MedicalImageList).length;
-		const temp = Math.floor(Math.random() * listSize);
-		return MedicalImageList[temp];
-	};
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
@@ -46,7 +40,7 @@ export default function Welcome() {
 					sm={4}
 					md={7}
 					sx={{
-						backgroundImage: backgroundImage,
+						backgroundImage: MedicalPhoto,
 						backgroundRepeat: "no-repeat",
 						backgroundColor: (t) =>
 							t.palette.mode === "light"

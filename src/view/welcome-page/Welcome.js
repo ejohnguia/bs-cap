@@ -5,9 +5,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -18,7 +15,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // Assets
 import Copyright from "../assets/props/Copyrights.js";
 import RandomMessage from "../assets/props/RandomMessage.js";
-
 import bsLogo from "../assets/images/Q.jpg";
 
 const theme = createTheme();
@@ -113,35 +109,15 @@ export default function Welcome() {
 								id="password"
 								autoComplete="current-password"
 							/>
-							<FormControlLabel
-								control={
-									<Checkbox
-										value="remember"
-										color="primary"
-									/>
-								}
-								label="Remember me"
-							/>
+
 							<Button
 								type="submit"
 								fullWidth
 								variant="contained"
 								sx={{ mt: 3, mb: 2 }}
 							>
-								Next
+								Setup Account
 							</Button>
-							<Grid container>
-								<Grid item xs>
-									<Link href="#" variant="body2">
-										Forgot password?
-									</Link>
-								</Grid>
-								<Grid item>
-									<Link href="#" variant="body2">
-										{"Don't have an account? Sign Up"}
-									</Link>
-								</Grid>
-							</Grid>
 						</Box>
 						<Copyright sx={{ mt: 5, bottom: 0 }} />
 					</Box>

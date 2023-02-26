@@ -21,15 +21,11 @@ import bsLogo from "../assets/images/Q.jpg";
 const theme = createTheme();
 
 export default function Welcome() {
-	const backgroundImage =
-		"url(https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)";
-
-	// FIXME: Get the images to rotate through the list
-	// const backgroundImage = function () {
-	// return MedicalImageList[
-	// Math.floor(Math.random() * MedicalImageList.length)
-	// ];
-	// };
+	const backgroundImage = function () {
+		const listSize = Object.keys(MedicalImageList).length;
+		const temp = Math.floor(Math.random() * listSize);
+		return MedicalImageList[temp];
+	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();

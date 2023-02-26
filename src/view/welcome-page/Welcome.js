@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // Assets
 import Copyright from "../assets/props/Copyrights.js";
+import MedicalImageList from "../assets/props/MedicalImageList";
 import RandomMessage from "../assets/props/RandomMessage.js";
 import bsLogo from "../assets/images/Q.jpg";
 
@@ -21,7 +22,14 @@ const theme = createTheme();
 
 export default function Welcome() {
 	const backgroundImage =
-		"url(https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)";
+		"url(https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)";
+
+	// FIXME: Get the images to rotate through the list
+	// const backgroundImage = function () {
+	// return MedicalImageList[
+	// Math.floor(Math.random() * MedicalImageList.length)
+	// ];
+	// };
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -78,7 +86,7 @@ export default function Welcome() {
 							justifyContent="flex-start"
 							spacing={2}
 						>
-							<Avatar alt="Test" src={bsLogo} />
+							<Avatar alt="Brightsquid Logo" src={bsLogo} />
 							<Typography component="h1" variant="h4">
 								Brightsquid
 							</Typography>

@@ -39,7 +39,12 @@ export default class RandomMessage extends React.Component {
 
 	render() {
 		return (
-			<Typography variant="h1" component="h2">
+			<Typography
+				variant="h1"
+				component="h2"
+				display="flex"
+				align="center"
+			>
 				{this.state.message} {this.state.clinicType}
 			</Typography>
 		);

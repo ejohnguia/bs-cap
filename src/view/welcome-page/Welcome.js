@@ -4,7 +4,6 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -20,14 +19,13 @@ import bsLogo from "../assets/images/Q.jpg";
 
 const theme = createTheme();
 
+// User information
+const email = "julie1234_@gmail.com";
+const clinic = "Panatella Dental";
+
 export default function Welcome() {
-	const handleSubmit = (event) => {
+	const handleButtonSetup = (event) => {
 		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get("email"),
-			password: data.get("password"),
-		});
 	};
 
 	return (
@@ -69,6 +67,8 @@ export default function Welcome() {
 							flexDirection: "column",
 							// FIXME: Align items can be removed for a flex-start justification
 							alignItems: "center",
+							direction: "column",
+							justifyContent: "center",
 						}}
 					>
 						<Stack
@@ -81,44 +81,29 @@ export default function Welcome() {
 								Brightsquid
 							</Typography>
 						</Stack>
-						<Box
-							component="form"
-							noValidate
-							onSubmit={handleSubmit}
-							sx={{ mt: 1 }}
-						>
-							<TextField
-								margin="normal"
-								required
-								fullWidth
-								id="email"
-								label="Email Address"
-								name="email"
-								autoComplete="email"
-								autoFocus
-							/>
-							<TextField
-								margin="normal"
-								required
-								fullWidth
-								name="password"
-								label="Password"
-								type="password"
-								id="password"
-								autoComplete="current-password"
-							/>
 
-							<Button
-								type="submit"
-								fullWidth
-								variant="contained"
-								sx={{ mt: 3, mb: 2 }}
-							>
-								Setup Account
-							</Button>
-						</Box>
-						<Copyright sx={{ mt: 5, bottom: 0 }} />
+						<Stack
+							direction="column"
+							justifyContent="center"
+							alignItems="center"
+							spacing={2}
+						>
+							<Typography>Welcome {email}!</Typography>
+							<Typography>You've been invited by:</Typography>
+							<Typography>Clinic: {clinic}</Typography>
+						</Stack>
+
+						<Button
+							type="submit"
+							fullWidth
+							variant="contained"
+							sx={{ mt: 3, mb: 2 }}
+						>
+							Setup Account
+						</Button>
 					</Box>
+
+					<Copyright sx={{ mt: 5, bottom: 0 }} />
 				</Grid>
 			</Grid>
 		</ThemeProvider>

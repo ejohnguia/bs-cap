@@ -55,8 +55,8 @@ export default function Welcome() {
 					xs={12}
 					sm={8}
 					md={5}
-					component={Paper}
 					elevation={6}
+					margin="auto"
 					square
 				>
 					<Box
@@ -86,10 +86,14 @@ export default function Welcome() {
 							direction="column"
 							justifyContent="center"
 							alignItems="center"
-							spacing={2}
+							spacing={3}
 						>
-							<Typography>Welcome {email}!</Typography>
-							<Typography>You've been invited by:</Typography>
+							<Typography variant="h5" align="center">
+								Welcome {email}!
+							</Typography>
+							<Typography variant="h5" align="center">
+								You've been invited by:
+							</Typography>
 							<Typography>Clinic: {clinic}</Typography>
 						</Stack>
 

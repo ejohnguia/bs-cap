@@ -26,8 +26,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 
-import HorizontalLinearStepper from "../../stepper";
-import setActiveStep from "../../stepper";
+import HorizontalLinearStepper from "../assets/props/Stepper";
+import setActiveStep from "../assets/props/Stepper";
 
 import { stepperClasses } from "@mui/material";
 function Copyright(props) {

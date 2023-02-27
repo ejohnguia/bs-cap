@@ -15,7 +15,7 @@ function App() {
 	return (
 		<Routes>
 			<Route exact path="/" element={<Welcome />} />
-			<Route exact path="/registration " element={<Registration />} />
+			<Route exact path="/registration" element={<Registration />} />
 			<Route
 				exact
 				path="/registration/practice-details"

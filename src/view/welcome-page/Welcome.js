@@ -4,11 +4,11 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import { Link } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // Assets
@@ -24,10 +24,6 @@ const email = "julie1234_@gmail.com";
 const clinic = "Panatella Dental";
 
 export default function Welcome() {
-	const handleButtonSetup = (event) => {
-		event.preventDefault();
-	};
-
 	return (
 		<ThemeProvider theme={theme}>
 			<Grid container component="main" sx={{ height: "100vh" }}>
@@ -81,7 +77,6 @@ export default function Welcome() {
 								Brightsquid
 							</Typography>
 						</Stack>
-
 						<Stack
 							direction="column"
 							justifyContent="center"
@@ -96,7 +91,6 @@ export default function Welcome() {
 							</Typography>
 							<Typography>Clinic: {clinic}</Typography>
 						</Stack>
-
 						<Button
 							type="submit"
 							fullWidth
@@ -105,6 +99,18 @@ export default function Welcome() {
 						>
 							Setup Account
 						</Button>
+						{/* TODO: Setup actual hosting site to test React Router. *
+						Used temporary button for display. * Replace top button
+						with button below.
+						<Button
+							component={Link}
+							to="/registration"
+							fullWidth
+							variant="contained"
+							sx={{ mt: 3, mb: 2 }}
+						>
+							Setup Account
+						</Button> */}
 					</Box>
 
 					<Copyright sx={{ mt: 5, bottom: 0 }} />

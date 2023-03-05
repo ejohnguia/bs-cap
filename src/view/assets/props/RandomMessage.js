@@ -2,51 +2,56 @@
 
 import React from "react";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 
-const messagesList = [
-	{
-		clinicType: "Dental Clinic",
-		message: "Happy Teeth Happy Feet!",
-	},
-	{
-		clinicType: "Children's Hospital",
-		message: "We're here to give presents to all children.",
-	},
-];
+// Swiper Assets
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+
+const messagesList = {
+	dentalClinic: "Happy Teeth Happy Feet!",
+	childrensHospital: "We're here to give presents to all children.",
+};
 
 export default class RandomMessage extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			message: "",
-			clinicType: "",
-		};
-	}
-
-	newMessage() {
-		let number = Math.floor(Math.random() * 2);
-		let newmessage = messagesList[number].message;
-
-		this.setState({ message: newmessage });
-
-		let newClinicType = messagesList[number].clinicType;
-		this.setState({ clinicType: newClinicType });
-	}
-
-	componentDidMount() {
-		this.newMessage();
-	}
-
 	render() {
 		return (
-			<Typography
-				variant="h1"
-				component="h2"
-				display="flex"
-				align="center"
+			<Box
+				component="section"
+				sx={{
+					display: "flex",
+					overflow: "hidden",
+					bgcolor: "white",
+				}}
 			>
-				{this.state.message} {this.state.clinicType}
-			</Typography>
+				<Container
+					sx={{ mt: 0, mb: 0, display: "flex", position: "relative" }}
+				>
+					<Swiper
+						spaceBetween={30}
+						centeredSlides={true}
+						autoplay={{
+							delay: 2500,
+							disableOnInteraction: false,
+						}}
+						pagination={{
+							clickable: true,
+						}}
+						navigation={true}
+						modules={[Autoplay, Pagination, Navigation]}
+						className="mySwiper"
+					>
+						{Object.keys(messagesList).map((key) => (
+							<SwiperSlide key={key}>
+								<Typography>{messagesList[key]}</Typography>
+							</SwiperSlide>
+						))}
+					</Swiper>
+				</Container>
+			</Box>
 		);
 	}
 }

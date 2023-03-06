@@ -2,8 +2,8 @@
 
 import React from "react";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import { Paper } from "@mui/material";
 
 // Swiper Assets
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,39 +19,30 @@ const messagesList = {
 export default class RandomMessage extends React.Component {
 	render() {
 		return (
-			<Box
-				component="section"
-				sx={{
-					display: "flex",
-					overflow: "hidden",
-					bgcolor: "white",
-				}}
-			>
-				<Container
-					sx={{ mt: 0, mb: 0, display: "flex", position: "relative" }}
+			<Paper elevation={11}>
+				<Swiper
+					spaceBetween={30}
+					centeredSlides={true}
+					autoplay={{
+						delay: 10000,
+						disableOnInteraction: false,
+					}}
+					pagination={{
+						clickable: true,
+					}}
+					navigation={true}
+					modules={[Autoplay, Pagination, Navigation]}
+					className="mySwiper"
 				>
-					<Swiper
-						spaceBetween={30}
-						centeredSlides={true}
-						autoplay={{
-							delay: 2500,
-							disableOnInteraction: false,
-						}}
-						pagination={{
-							clickable: true,
-						}}
-						navigation={true}
-						modules={[Autoplay, Pagination, Navigation]}
-						className="mySwiper"
-					>
-						{Object.keys(messagesList).map((key) => (
-							<SwiperSlide key={key}>
-								<Typography>{messagesList[key]}</Typography>
-							</SwiperSlide>
-						))}
-					</Swiper>
-				</Container>
-			</Box>
+					{Object.keys(messagesList).map((key) => (
+						<SwiperSlide key={key}>
+							<Typography align="center">
+								{messagesList[key]}
+							</Typography>
+						</SwiperSlide>
+					))}
+				</Swiper>
+			</Paper>
 		);
 	}
 }

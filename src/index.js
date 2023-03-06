@@ -3,16 +3,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from './App';
+import App from "./App";
+import Welcome from "./view/welcome-page/Welcome";
 import SignInSide from "./view/sign-in-page/SignInSide";
 import reportWebVitals from "./reportWebVitals";
 import PracticeDetails from "./view/registration-page/PracticeDetails";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
-		<PracticeDetails/>
-		{/* <App /> */}
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
 	</React.StrictMode>
 );
 

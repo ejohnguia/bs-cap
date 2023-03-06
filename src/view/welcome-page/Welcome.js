@@ -46,15 +46,7 @@ export default function Welcome() {
 				>
 					<RandomMessage></RandomMessage>
 				</Grid>
-				<Grid
-					item
-					xs={12}
-					sm={8}
-					md={5}
-					elevation={6}
-					margin="auto"
-					square
-				>
+				<Grid item xs={12} sm={8} md={5} elevation={6} margin="auto">
 					<Box
 						sx={{
 							my: 8,
@@ -91,17 +83,7 @@ export default function Welcome() {
 							</Typography>
 							<Typography>Clinic: {clinic}</Typography>
 						</Stack>
-						<Button
-							type="submit"
-							fullWidth
-							variant="contained"
-							sx={{ mt: 3, mb: 2 }}
-						>
-							Setup Account
-						</Button>
-						{/* TODO: Setup actual hosting site to test React Router. *
-						Used temporary button for display. * Replace top button
-						with button below.
+
 						<Button
 							component={Link}
 							to="/registration"
@@ -110,7 +92,7 @@ export default function Welcome() {
 							sx={{ mt: 3, mb: 2 }}
 						>
 							Setup Account
-						</Button> */}
+						</Button>
 					</Box>
 
 					<Copyright sx={{ mt: 5, bottom: 0 }} />

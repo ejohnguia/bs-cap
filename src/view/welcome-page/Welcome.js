@@ -13,8 +13,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // Assets
 import Copyright from "../assets/props/Copyrights.js";
-import MedicalPhoto from "../assets/props/MedicalPhoto.js";
-import RandomMessage from "../assets/props/RandomMessage.js";
+import MedicalPhoto from "../assets/props/MedicalPhotoProp.js";
+import RandomMessage from "../assets/props/RandomMessageProp.js";
 import bsLogo from "../assets/images/Q.jpg";
 
 const theme = createTheme();

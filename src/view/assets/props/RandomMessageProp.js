@@ -2,7 +2,6 @@
 
 import React from "react";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import { Paper } from "@mui/material";
 
 // Swiper Assets
@@ -11,10 +10,7 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const messagesList = {
-	dentalClinic: "Happy Teeth Happy Feet!",
-	childrensHospital: "We're here to give presents to all children.",
-};
+import MessagesList from "../../../model/MessageList";
 
 export default class RandomMessage extends React.Component {
 	render() {
@@ -34,10 +30,10 @@ export default class RandomMessage extends React.Component {
 					modules={[Autoplay, Pagination, Navigation]}
 					className="mySwiper"
 				>
-					{Object.keys(messagesList).map((key) => (
+					{Object.keys(MessagesList).map((key) => (
 						<SwiperSlide key={key}>
 							<Typography align="center">
-								{messagesList[key]}
+								{MessagesList[key]}
 							</Typography>
 						</SwiperSlide>
 					))}

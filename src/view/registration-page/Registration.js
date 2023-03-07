@@ -170,13 +170,14 @@ export default function Registration() {
 								margin="normal"
 								required
 								fullWidth
-								id="password"
-								label="Password"
+								id="confirm-password"
+								label="Confirm Password"
 								name="password"
 								// autoComplete="Doe"
 								autoFocus
 							/>
 							<Button
+								id="next-steps-btn"
 								component={Link}
 								to="/registration/practice-details"
 								fullWidth

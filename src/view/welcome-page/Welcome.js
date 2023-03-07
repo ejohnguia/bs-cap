@@ -85,6 +85,7 @@ export default function Welcome() {
 						</Stack>
 
 						<Button
+							id="setup-btn"
 							component={Link}
 							to="/registration"
 							fullWidth

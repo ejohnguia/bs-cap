@@ -4,10 +4,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import Welcome from "./view/welcome-page/Welcome";
+import Welcome from "./view/welcome-page/Welcome"; // Page 1
 import SignInSide from "./view/sign-in-page/SignInSide";
 import reportWebVitals from "./reportWebVitals";
-import PracticeDetails from "./view/registration-page/PracticeDetails";
+import Registration from "./view/registration-page/Registration"; // Page 2
+import PracticeDetails from "./view/registration-page/PracticeDetails"; // Page 3
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

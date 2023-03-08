@@ -28,25 +28,7 @@ import InputLabel from "@mui/material/InputLabel";
 
 import HorizontalLinearStepper from "../assets/props/Stepper";
 import setActiveStep from "../assets/props/Stepper";
-
-
-function Copyright(props) {
-	return (
-		<Typography
-			variant="body2"
-			color="text.secondary"
-			align="center"
-			{...props}
-		>
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Brightsquid
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
+import Copyright from "../assets/props/Copyrights.js";
 
 const theme = createTheme();
 
@@ -255,7 +237,9 @@ export default function PracticeDetails() {
 					</Button>
 				</Grid>
 			</Grid> */}
+				<Copyright sx={{ mt: 5 }} />
 				<HorizontalLinearStepper> </HorizontalLinearStepper>
+				
 			</Grid>
 		</ThemeProvider>
 	);

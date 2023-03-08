@@ -14,6 +14,7 @@ export default function Copyright(props) {
 		>
 			{"By using this service, you agree to our "}
 			<Link
+				id="terms-of-use"
 				color="inherit"
 				href="https://brightsquid.com/pages/brightsquid-application-terms-of-use"
 			>
@@ -21,6 +22,7 @@ export default function Copyright(props) {
 			</Link>{" "}
 			{" and "}
 			<Link
+				id="privacy-policy"
 				color="inherit"
 				href="https://brightsquid.com/pages/brightsquid-application-privacy-policy"
 			>

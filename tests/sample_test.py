@@ -24,6 +24,5 @@ class PythonOrgSearch(unittest.TestCase):
         # self.driver.close() # <-- throws an "WinError 6"
         self.driver.quit() 
 
-
 if __name__ == "__main__":
     unittest.main()

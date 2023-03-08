@@ -15,6 +15,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PasswordStrengthBar from 'react-password-strength-bar';
+import Copyright from "../assets/props/Copyrights.js";
 
 import MedicalPhoto from "../assets/props/MedicalPhotoProp.js";
 
@@ -34,23 +35,6 @@ import setActiveStep from "../../stepper";
 // import setActiveStep from "../../stepper";
 
 import { stepperClasses } from "@mui/material";
-function Copyright(props) {
-	return (
-		<Typography
-			variant="body2"
-			color="text.secondary"
-			align="center"
-			{...props}
-		>
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Brightsquid
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
 
 const theme = createTheme();
 // const { password } = this.state;
@@ -195,10 +179,6 @@ export default function Registration() {
 								</Grid>
 								<HorizontalLinearStepper> </HorizontalLinearStepper>
 								<Grid item>
-									<Typography variant="body2"> By using this service, you agree to our Terms of Use and Privacy Policy </Typography>
-									{/* <Link href="#" variant="body2">
-										{"By using this service, you agree to our Terms of Use and Privacy Policy"}
-									</Link> */}
 								</Grid>
 							</Grid>
 							

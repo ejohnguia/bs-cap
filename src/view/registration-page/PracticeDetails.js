@@ -33,15 +33,6 @@ import Copyright from "../assets/props/Copyrights.js";
 const theme = createTheme();
 
 export default function PracticeDetails() {
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get("email"),
-			password: data.get("password"),
-		});
-	};
-
 	return (
 		<ThemeProvider theme={theme}>
 			<Grid

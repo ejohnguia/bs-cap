@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -40,16 +40,6 @@ const theme = createTheme();
 // const { password } = this.state;
 // <PasswordStrengthBar password={password} />
 export default function Registration() {
-	// TO-DO: connect to prev and next page
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		// console.log({
-		// 	email: data.get("email"),
-		// 	password: data.get("password"),
-		// });
-	};
-
 	return (
 		<ThemeProvider theme={theme}>
 			<Grid container component="main" sx={{ height: "100%" , width: "100%"}} marginLeft={4}>
@@ -101,8 +91,6 @@ export default function Registration() {
 						</Typography>
 						<Box
 							component="form"
-							noValidate
-							onSubmit={handleSubmit}
 							sx={{ mt: 1 }}
 						>
 							<Typography variant="body1"> Username </Typography>
@@ -181,26 +169,9 @@ export default function Registration() {
 								<Grid item>
 								</Grid>
 							</Grid>
-							
-
-								{/* <Grid container spacing={6}>
-									<Grid item xs={6}>
-										<Button>
-											Back
-										</Button>
-									</Grid>
-									<Grid item xs={6}>
-										<Button>
-											Do Later
-										</Button>
-										<Button>
-											Continue
-										</Button>
-									</Grid>
-								</Grid> */}
-							<Copyright sx={{ mt: 5 }} />
 						</Box>
 					</Box>
+					<Copyright sx={{ mt: 5 }} />
 				</Grid>
 			</Grid>
 		</ThemeProvider>

@@ -4,6 +4,8 @@
 
 Registration and login system for Brightsquid Capstone.
 
+The website has been deployed on Netlify: [bs-cap](https://bs-cap.netlify.app/)
+
 Stack used: [MongoDB](www.mongodb.com/), [Express](https://expressjs.com/), [React](https://reactjs.org/), [Node.js](https://nodejs.org/en/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -20,7 +22,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+<!-- ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
@@ -73,4 +75,38 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
+
+# Setup a [Python Virtual Environment](https://docs.python.org/3/tutorial/venv.html) for Testing
+
+Create a virtual environment (venv) to avoid cluttering the computer with unncessary packages.
+
+Run the following to create the venv:
+
+`Bash`:
+
+```bash
+source [venv name]/Scripts/activate
+```
+
+To exit:
+
+```bash
+deactivate
+```
+
+### Package Management
+
+Install your packages while in the venv.
+
+To install the packages from a `requirements.txt` file:
+
+```ps
+python -m pip install -r requirements.txt
+```
+
+To save the packages in a `requirements.txt` file:
+
+```ps
+pip freeze > requirements.txt
+```

@@ -8,56 +8,84 @@ from selenium.webdriver.support import expected_conditions as EC
 class RegistrationTests(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Firefox() # won't work on MAC safari
+        self.driver = webdriver.Firefox() # use firefox or change to chrome
 
-    def testWelcomePage(self):
-        self.driver.get("https://bs-cap.netlify.app")
+        # links 
+        self.main_link = "https://bs-cap.netlify.app"
+        self.registration_link = "https://bs-cap.netlify.app/registration"
+        self.practice_details_link = "https://bs-cap.netlify.app/registration/practice-details"
+        self.privacy_link = "https://brightsquid.com/pages/brightsquid-application-privacy-policy"
+        self.terms_link = "https://brightsquid.com/pages/brightsquid-application-terms-of-use"
+
+
+    ########################################### WELCOME PAGE UNIT TESTS ############################################
+    # TODO: test for information message (REQ-005)
+    # def testWelcomeInfoMssg(self):
+
+    # test for privacy link (REQ-003)
+    def testWelcomePrivacyLink(self):
+        self.driver.get(self.main_link)
+
+        react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
+
+        react_app.find_element(By.ID, "privacy-policy").click() # click privacy policy 
+        self.assertTrue(self.privacy_link, self.driver.current_url)  # check if the url matches 
+        self.driver.back()                                      # go back to previous page
+
+    # test for terms of use link (REQ-004)
+    def testWelcomeTermsLink(self):
+        self.driver.get(self.main_link)
+
         react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
         
-        # TODO: test for information message (REQ-005)
-        # TODO: test for privacy link
+        react_app.find_element(By.ID, "terms-of-use").click()   # click privacy policy 
+        self.assertTrue(self.terms_link, self.driver.current_url)    # check if the url matches 
+        self.driver.back()                                      # go back to previous page
 
-        # TODO: test for terms of use link 
-
-        # REQ-001
-        # Clicks on "Setup Account" button
-        react_app.find_element(By.ID, "setup-btn").click() 
-
-        # Check if clicking the "Setup Account" button brings you to the registration page
-        self.assertTrue("https://bs-cap.netlify.app/registration", self.driver.current_url)
-
-    def testFirstRegistrationPage(self):
-        # *** i think i should be accessing the registration page directly
-        self.driver.get("https://bs-cap.netlify.app")
-        react_app.find_element(By.ID, "setup-btn").click() 
-        ####################################################################
+    # test next button (REQ-001)
+    def testWelcomeNextButton(self):
+        self.driver.get(self.main_link)
 
         react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
+
+        react_app.find_element(By.ID, "setup-btn").click()                                  # clicks on "Setup Account" button 
+        self.assertTrue(self.registration_link, self.driver.current_url) # check if you're in the registration page 
+    
+    ########################################### REGISTRATION PAGE UNIT TESTS ############################################
+    # TODO: testing for password meter criteria (REQ-006 - REQ-0012)
+    
+    # test if passwords match (REQ-013) 
+    def testRegistrationConfirmPass(self):
+        # *** FIXME: i think i should be accessing the registration page directly
+        self.driver.get(self.main_link)
+        react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
+        react_app.find_element(By.ID, "setup-btn").click() 
+        ####################################################################
 
         pass_field = react_app.find_element(By.ID, "password")
         confirm_pass_field = react_app.find_element(By.ID, "confirm-password")
 
-        # TODO: testing for password meter criteria (REQ-006 - REQ-0012)
-
         # Send values to password fields
-        pass_field.sendKeys("abcdef12345")
-        confirm_pass_field.sendKeys("abcdef12345")
-    
-        # TODO: test for 
+        pass_field.send_keys("abcdef12345")
+        confirm_pass_field.send_keys("abcdef12345")
 
-        # Clicks on "Next Steps" button
-        setup_btn = react_app.find_element(By.ID, "next-steps-btn").click() 
+        pass_val = pass_field.get_attribute("value")                 # first we get the password text...
+        confirm_pass_val = confirm_pass_field.get_attribute("value") # then we get the confirm password text
+        self.assertTrue(pass_val, confirm_pass_val)                  # check if the values entered are the same
 
-        # REQ-013: Check if text in "Password" field and "Confirm Password" field are the same
-        # First we get the password text
-        pass_val = pass_field.getAttribute("value")
+    # test next button (REQ-001)    
+    def testRegistrationNextSteps(self):
+        # *** FIXME: i think i should be accessing the registration page directly
+        self.driver.get(self.main_link)
+        react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
 
-        # Then we get the confirm password text
-        confirm_pass_val = confirm_pass_field.getAttribute("value")
-        
-        # Compare the two
-        self.assertTrue(pass_val, confirm_pass_val)
+        react_app.find_element(By.ID, "setup-btn").click() 
+        ####################################################################
 
+        react_app.find_element(By.ID, "next-steps-btn").click()                 # click "Next Steps" button
+        self.assertTrue(self.practice_details_link, self.driver.current_url)    # check if it brings you to the Practice Details page
+
+    ########################################### TO-DO: PRACTICE DETAILS PAGE UNIT TESTS ############################################
 
     def tearDown(self):
         print("done")

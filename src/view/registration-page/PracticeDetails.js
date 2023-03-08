@@ -28,7 +28,7 @@ import InputLabel from '@mui/material/InputLabel';
 
 import HorizontalLinearStepper from "../../stepper";
 import setActiveStep from "../../stepper";
-
+import MedicalPhoto from "../assets/props/MedicalPhotoProp.js";
 
 function Copyright(props) {
 	return (
@@ -61,8 +61,7 @@ export default function PracticeDetails() {
 					sm={4}
 					md={3}
 					sx={{
-						// backgroundImage:
-						// 	"url(https://source.unsplash.com/random)",
+						backgroundImage: MedicalPhoto,
 						backgroundRepeat: "no-repeat",
 						backgroundColor: (t) =>
 							t.palette.mode === "light"

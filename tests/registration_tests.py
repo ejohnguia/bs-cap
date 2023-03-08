@@ -74,7 +74,7 @@ class RegistrationTests(unittest.TestCase):
         self.assertTrue(pass_val, confirm_pass_val)                  # check if the values entered are the same
 
     # test next button (REQ-001)    
-    def testRegistrationNextSteps(self):
+    def testRegistrationNextStepsButton(self):
         # *** FIXME: i think i should be accessing the registration page directly
         self.driver.get(self.main_link)
         react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))

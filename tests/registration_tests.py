@@ -28,9 +28,9 @@ class RegistrationTests(unittest.TestCase):
 
         react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
 
-        react_app.find_element(By.ID, "privacy-policy").click() # click privacy policy 
-        self.assertTrue(self.privacy_link, self.driver.current_url)  # check if the url matches 
-        self.driver.back()                                      # go back to previous page
+        react_app.find_element(By.ID, "privacy-policy").click()     # click privacy policy 
+        self.assertTrue(self.privacy_link, self.driver.current_url) # check if the url matches 
+        self.driver.back()                                          # go back to previous page
 
     # test for terms of use link (REQ-004)
     def testWelcomeTermsLink(self):
@@ -38,9 +38,9 @@ class RegistrationTests(unittest.TestCase):
 
         react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
         
-        react_app.find_element(By.ID, "terms-of-use").click()   # click privacy policy 
-        self.assertTrue(self.terms_link, self.driver.current_url)    # check if the url matches 
-        self.driver.back()                                      # go back to previous page
+        react_app.find_element(By.ID, "terms-of-use").click()       # click privacy policy 
+        self.assertTrue(self.terms_link, self.driver.current_url)   # check if the url matches 
+        self.driver.back()                                          # go back to previous page
 
     # test next button (REQ-001)
     def testWelcomeNextButton(self):
@@ -48,8 +48,8 @@ class RegistrationTests(unittest.TestCase):
 
         react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
 
-        react_app.find_element(By.ID, "setup-btn").click()                                  # clicks on "Setup Account" button 
-        self.assertTrue(self.registration_link, self.driver.current_url) # check if you're in the registration page 
+        react_app.find_element(By.ID, "setup-btn").click()                      # clicks on "Setup Account" button 
+        self.assertTrue(self.registration_link, self.driver.current_url)        # check if you're in the registration page 
     
     ########################################### REGISTRATION PAGE UNIT TESTS ############################################
     # TODO: testing for password meter criteria (REQ-006 - REQ-0012)
@@ -74,7 +74,7 @@ class RegistrationTests(unittest.TestCase):
         self.assertTrue(pass_val, confirm_pass_val)                  # check if the values entered are the same
 
     # test next button (REQ-001)    
-    def testRegistrationNextSteps(self):
+    def testRegistrationNextStepsButton(self):
         # *** FIXME: i think i should be accessing the registration page directly
         self.driver.get(self.main_link)
         react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))

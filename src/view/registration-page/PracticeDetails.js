@@ -29,24 +29,7 @@ import InputLabel from '@mui/material/InputLabel';
 import HorizontalLinearStepper from "../../stepper";
 import setActiveStep from "../../stepper";
 import MedicalPhoto from "../assets/props/MedicalPhotoProp.js";
-
-function Copyright(props) {
-	return (
-		<Typography
-			variant="body2"
-			color="text.secondary"
-			align="center"
-			{...props}
-		>
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Brightsquid
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
+import Copyright from "../assets/props/Copyrights.js";
 
 const theme = createTheme();
 
@@ -244,6 +227,7 @@ export default function PracticeDetails() {
 							</Grid>
 						</Box>
 					</Box>
+					<Copyright sx={{ mt: 5 }} />
 				</Grid>
 			</Grid>
 		</ThemeProvider>

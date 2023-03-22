@@ -29,28 +29,18 @@ import InputLabel from '@mui/material/InputLabel';
 import HorizontalLinearStepper from "../../stepper";
 import setActiveStep from "../../stepper";
 import MedicalPhoto from "../assets/props/MedicalPhotoProp.js";
+import Copyright from "../assets/props/Copyrights.js";
 
-function Copyright(props) {
-	return (
-		<Typography
-			variant="body2"
-			color="text.secondary"
-			align="center"
-			{...props}
-		>
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Brightsquid
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/material.css';
+
+import { useEffect, useState } from "react"
 
 const theme = createTheme();
 
 export default function PracticeDetails() {
+	const [value, setValue] = useState("");
+
 	return (
 		<ThemeProvider theme={theme}>
 			<Grid container component="main" sx={{ height: "100vh"}}>
@@ -104,18 +94,21 @@ export default function PracticeDetails() {
 										id="practice_name"
 										label="Practice Name"
 										name="practice_name"
-										autoFocus
+										
 									/>
 								</Grid>
 								<Grid item xs={5} mt={7}>
 									<Typography variant="body1"> Practice Phone </Typography>
-									<TextField
-										margin="normal"
-										fullWidth
-										name="practice_phone"
-										label="Practice Phone"
-										id="practice_phone"
-									/>
+									<PhoneInput
+										// fix me, label disappear, similar to text fields
+										specialLabel={""}
+										country={'ca'}
+										// defaultValue={10}
+										inputProps={{shrink: "false"}}
+										disableDropdown={true}
+										disableSearchIcon={true}
+										value={value}
+										onChange={setValue}/>
 								</Grid>
 							</Grid>
 
@@ -244,6 +237,7 @@ export default function PracticeDetails() {
 							</Grid>
 						</Box>
 					</Box>
+					<Copyright sx={{ mt: 5 }} />
 				</Grid>
 			</Grid>
 		</ThemeProvider>

@@ -31,6 +31,12 @@ import InputLabel from '@mui/material/InputLabel';
 import HorizontalLinearStepper from "../../stepper";
 import setActiveStep from "../../stepper";
 
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import OutlinedInput from '@mui/material/OutlinedInput';
+
 // import HorizontalLinearStepper from "../../stepper";
 // import setActiveStep from "../../stepper";
 
@@ -40,6 +46,13 @@ const theme = createTheme();
 // const { password } = this.state;
 // <PasswordStrengthBar password={password} />
 export default function Registration() {
+	const [showPassword, setShowPassword] = React.useState(false);
+	const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+	const handleMouseDownPassword = (event) => {
+	  event.preventDefault();
+	};
+
 	return (
 		<ThemeProvider theme={theme}>
 			<Grid container component="main" sx={{ height: "100%" , width: "100%"}} marginLeft={4}>
@@ -125,7 +138,7 @@ export default function Registration() {
 								label="Remember me"
 							/> */}
 							<Typography variant="body1"> Create a Password </Typography>
-							<TextField
+							{/* <TextField
 								margin="normal"
 								required
 								fullWidth
@@ -134,19 +147,46 @@ export default function Registration() {
 								name="password"
 								// autoComplete="Doe"
 								autoFocus
+							/> */}
+							<OutlinedInput
+								label="Password"
+								fullWidth
+								id="outlined-adornment-password"
+								type={showPassword ? 'text' : 'password'}
+								endAdornment={
+								<InputAdornment position="end">
+									<IconButton
+									aria-label="toggle password visibility"
+									onClick={handleClickShowPassword}
+									onMouseDown={handleMouseDownPassword}
+									edge="end"
+									>
+									{showPassword ? <VisibilityOff /> : <Visibility />}
+									</IconButton>
+								</InputAdornment>
+								}
 							/>
 							{/* TODO: Password meter */}
 							<Typography variant="body1"> PASSWORD METER PLACEHOLDER </Typography>
 							<Typography variant="body1"> Confirm Password </Typography>
-							<TextField
-								margin="normal"
-								required
+
+							<OutlinedInput
+								label="Password"
 								fullWidth
-								id="confirm-password"
-								label="Confirm Password"
-								name="password"
-								// autoComplete="Doe"
-								autoFocus
+								id="outlined-adornment-password"
+								type={showPassword ? 'text' : 'password'}
+								endAdornment={
+								<InputAdornment position="end">
+									<IconButton
+									aria-label="toggle password visibility"
+									onClick={handleClickShowPassword}
+									onMouseDown={handleMouseDownPassword}
+									edge="end"
+									>
+									{showPassword ? <VisibilityOff /> : <Visibility />}
+									</IconButton>
+								</InputAdornment>
+								}
 							/>
 							<Button
 								id="next-steps-btn"

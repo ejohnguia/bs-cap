@@ -7,8 +7,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -30,16 +28,44 @@ import HorizontalLinearStepper from "../../stepper";
 import setActiveStep from "../../stepper";
 import MedicalPhoto from "../assets/props/MedicalPhotoProp.js";
 import Copyright from "../assets/props/Copyrights.js";
-
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/material.css';
-
-import { useEffect, useState } from "react"
+import { IMaskInput } from 'react-imask';
+import PropTypes from 'prop-types';
 
 const theme = createTheme();
 
+const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
+	const { onChange, ...other } = props;
+	return (
+	  <IMaskInput
+		{...other}
+		mask="(#00) 000-0000"
+		definitions={{
+		  '#': /[1-9]/,
+		}}
+		inputRef={ref}
+		onAccept={(value) => onChange({ target: { name: props.name, value } })}
+		overwrite
+	  />
+	);
+});
+
+TextMaskCustom.propTypes = {
+	name: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired,
+};
+  
 export default function PracticeDetails() {
-	const [value, setValue] = useState("");
+	const [values, setValues] = React.useState({
+		textmask: '',
+		numberformat: '1320',
+	  });
+	
+	  const handleChange = (event) => {
+		setValues({
+		  ...values,
+		  [event.target.name]: event.target.value,
+		});
+	  };
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -99,16 +125,18 @@ export default function PracticeDetails() {
 								</Grid>
 								<Grid item xs={5} mt={7}>
 									<Typography variant="body1"> Practice Phone </Typography>
-									<PhoneInput
-										// fix me, label disappear, similar to text fields
-										specialLabel={""}
-										country={'ca'}
-										// defaultValue={10}
-										inputProps={{shrink: "false"}}
-										disableDropdown={true}
-										disableSearchIcon={true}
-										value={value}
-										onChange={setValue}/>
+									<TextField
+										margin="normal"
+										fullWidth
+										label="Practice Phone"
+										value={values.textmask}
+										onChange={handleChange}
+										name="textmask"
+										id="pratice_phone"
+										InputProps={{
+											inputComponent : TextMaskCustom
+										}}
+									/>
 								</Grid>
 							</Grid>
 

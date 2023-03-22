@@ -17,22 +17,27 @@ const ClinicSchema = new Schema({
 
 	type: {
 		type: String,
+		required: true,
 	},
 
 	subtype: {
 		type: String,
+		required: true,
 	},
 
 	country: {
 		type: String,
+		required: true,
 	},
 
 	province: {
 		type: String,
+		required: true,
 	},
 
 	city: {
 		type: String,
+		required: true,
 	},
 });
 

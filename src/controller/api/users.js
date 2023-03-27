@@ -15,11 +15,11 @@ router.get("/", (req, res) => {
 
 // Adds new user into the db
 router.post("/", (req, res) => {
-	const { name, email } = req.body;
+	const { username, password } = req.body;
 
 	const newUser = new User({
-		name: name,
-		email: email,
+		username: username,
+		password: password,
 	});
 
 	newUser
@@ -27,14 +27,14 @@ router.post("/", (req, res) => {
 
 		.then(() =>
 			res.json({
-				message: "Created account successfully",
+				message: "Created user successfully",
 			})
 		)
 
 		.catch((err) =>
 			res.status(400).json({
 				error: err,
-				message: "Error creating account",
+				message: "Error creating user",
 			})
 		);
 });

@@ -3,7 +3,7 @@
 import Clinic from "./Clinic.model";
 
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const UserSchema = new Schema({
 	email: {
@@ -16,13 +16,11 @@ const UserSchema = new Schema({
 	password: {
 		type: String,
 		required: true,
-		min: 6,
-		max: 1024,
 	},
 
-	clinic: {
-		type: Clinic,
-	},
+	// clinic: {
+	// 	type: Clinic,
+	// },
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema, "Users");

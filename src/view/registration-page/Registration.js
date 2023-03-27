@@ -50,8 +50,9 @@ const theme = createTheme();
 export default function Registration() {
 	// Creates states for fields
 	const [username, setUsername] = useState("");
-	const [password, setEmail] = useState("");
-	const [showPassword, setShowPassword] = React.useState(false);
+	const [password, setPassword] = useState("");
+	const [passwordConfirm, setPasswordConfirm] = useState("");
+	const [showPassword, setShowPassword] = useState(false);
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
 
 	const handleMouseDownPassword = (event) => {
@@ -59,7 +60,11 @@ export default function Registration() {
 	};
 
 	// Handles backend submission
-	function submitForm() {
+	function handleSubmitForm() {
+		if (password !== passwordConfirm) {
+			alert("Passwords do not match!");
+			return;
+		}
 		if (username === "") {
 			alert("Please fill the username field");
 			return;
@@ -144,6 +149,7 @@ export default function Registration() {
 						<Box component="form" sx={{ mt: 1 }}>
 							<Typography variant="body1"> Username </Typography>
 							<TextField
+								onChange={(e) => setUsername(e.target.value)}
 								margin="normal"
 								required
 								fullWidth
@@ -188,6 +194,7 @@ export default function Registration() {
 								autoFocus
 							/> */}
 							<OutlinedInput
+								onChange={(e) => setPassword(e.target.value)}
 								label="Password"
 								fullWidth
 								id="outlined-adornment-password"
@@ -213,15 +220,23 @@ export default function Registration() {
 							/>
 							{/* TODO: Password meter */}
 							<Typography variant="body1">
-								{" "}
+								{""}
 								PASSWORD METER PLACEHOLDER{" "}
 							</Typography>
 							<Typography variant="body1">
-								{" "}
+								{""}
 								Confirm Password{" "}
 							</Typography>
 
 							<OutlinedInput
+								onChange={(e) => {
+									setPasswordConfirm(e.target.value);
+								}}
+								// onChange={(e) => {
+								// 	if (password === e.target.value) {
+								// 		setPasswordConfirm(e.target.value);
+								// 	}
+								// }}
 								label="Password"
 								fullWidth
 								id="outlined-adornment-password"
@@ -246,6 +261,7 @@ export default function Registration() {
 								}
 							/>
 							<Button
+								onClick={{ handleSubmitForm }}
 								id="next-steps-btn"
 								component={Link}
 								to="/registration/practice-details"

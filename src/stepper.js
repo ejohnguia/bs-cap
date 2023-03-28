@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 
 const steps = ['Welcome', 'Email and Password', 'Practice  Details'];
 
+//Testing my commits and pushing -kylie
+
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(2);    // TO-DO: somehow dynamically change this state per page
   const [skipped, setSkipped] = React.useState(new Set());

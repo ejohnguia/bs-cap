@@ -8,7 +8,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -67,7 +67,7 @@ export default function Registration() {
 	// Creates states for fields
 	// Create a state var to hold the password strength
 	// const [passwordStrength, setPasswordStrength] = React.useState(0);
-	const [password, setPassword] = React.useState("");
+	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -100,8 +100,10 @@ export default function Registration() {
 				window.location.reload();
 			})
 			.catch(function () {
-				alert("Could not creat account. Please try again");
+				alert("Could not create account. Please try again");
 			});
+		console.log(username, ", ", password, ", ", passwordConfirm);
+		Navigate("/registration/practice-details");
 	}
 
 	return (
@@ -300,30 +302,6 @@ export default function Registration() {
 								}
 							/>
 
-							<OutlinedInput
-								label="Password"
-								fullWidth
-								id="outlined-adornment-password"
-								type={showPassword ? "text" : "password"}
-								endAdornment={
-									<InputAdornment position="end">
-										<IconButton
-											aria-label="toggle password visibility"
-											onClick={handleClickShowPassword}
-											onMouseDown={
-												handleMouseDownPassword
-											}
-											edge="end"
-										>
-											{showPassword ? (
-												<VisibilityOff />
-											) : (
-												<Visibility />
-											)}
-										</IconButton>
-									</InputAdornment>
-								}
-							/>
 							{/* About you section */}
 							<Typography variant="h6">About You</Typography>
 
@@ -355,10 +333,8 @@ export default function Registration() {
 								</FormControl>
 							</Grid>
 							<Button
-								onClick={{ handleSubmitForm }}
+								onClick={handleSubmitForm}
 								id="next-steps-btn"
-								component={Link}
-								to="/registration/practice-details"
 								fullWidth
 								variant="contained"
 								sx={{ mt: 3, mb: 2 }}

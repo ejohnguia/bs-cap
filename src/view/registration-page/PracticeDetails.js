@@ -9,13 +9,15 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+import Stack from "@mui/material/Stack";
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -40,6 +42,7 @@ const theme = createTheme();
 
 export default function PracticeDetails() {
 	const [value, setValue] = useState("");
+	// const [phoneNumber, setPhoneNumber] = useState("");
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -100,11 +103,11 @@ export default function PracticeDetails() {
 								<Grid item xs={5} mt={7}>
 									<Typography variant="body1"> Practice Phone </Typography>
 									<PhoneInput
+									fullWidth
 										// fix me, label disappear, similar to text fields
 										specialLabel={""}
 										country={'ca'}
-										// defaultValue={10}
-										inputProps={{shrink: "false"}}
+										inputProps={{shrink: "true"}}
 										disableDropdown={true}
 										disableSearchIcon={true}
 										value={value}
@@ -182,6 +185,7 @@ export default function PracticeDetails() {
 									</FormControl>
 								</Grid>
 							</Grid>
+	
 							<Grid container spacing={12}>
 								<Grid item xs={2}/>	{/* Empty grid item to align the City dropdown*/}
 
@@ -199,42 +203,25 @@ export default function PracticeDetails() {
 									</FormControl>
 								</Grid>
 							</Grid>
-							{/* TO-DO: MOVE TO PREVIOUS PAGE! ABOUT YOU: Role and Specialty */}
-							{/* <Grid container spacing={6}>
-								<Grid item xs={2}>
-									<Typography variant="body1" mt={7}>  <strong> About you </strong></Typography>
-								</Grid>
-								<Grid item xs={3}>
-										<Typography>Role</Typography>
-										<RadioGroup
-											row
-											aria-labelledby="demo-row-radio-buttons-group-label"
-											name="row-radio-buttons-group">
-											<FormControlLabel value="Clinician" control={<Radio/>} label="Clinician" />
-											<FormControlLabel value="Staff" control={<Radio/>} label="Staff" />
-										</RadioGroup>
-									</Grid>
-							
-									<Grid item xs={3}>
-										<Typography  mb={2}> Specialty</Typography>
-										<FormControl fullWidth>
-										<InputLabel> Specialty </InputLabel>
-										{/* TO-DO: fill with actual data 
-										<Select id="specialty-select" label="Specialty">
-											<MenuItem value={10}>specialty</MenuItem>
-											<MenuItem value={20}>specialty</MenuItem>
-											<MenuItem value={30}>specialty</MenuItem>
-										</Select>
-										</FormControl>
-									</Grid>	
-							</Grid> */}		
-
-							{/* Fix to snap from bottom */}
-							<Grid container spacing={10} >
-								<Grid item xs={10} mt={5} >
+			
+							{/* Center the stepper */}
+							<Grid container spacing={10}  alignItems="center" justifyContent="center">
+								<Grid item xs={10} mt={5}  >
 									<HorizontalLinearStepper> </HorizontalLinearStepper>
 								</Grid>
 							</Grid>
+
+							{/* Back and next buttons */}
+							<Grid container spacing={12}>
+								<Grid item xs={10} mt={5}>
+									<Button id="back-btn" variant="contained" component={Link} to="/registration">Back</Button>
+								</Grid>
+								<Grid item xs={2} mt={5}  >
+									{/* Need to check fields if form is complete */}
+									<Button id="next-btn" variant="contained" onClick>Next</Button>
+								</Grid>
+							</Grid>
+
 						</Box>
 					</Box>
 					<Copyright sx={{ mt: 5 }} />

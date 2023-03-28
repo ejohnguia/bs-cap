@@ -1,7 +1,7 @@
 /** @format */
 // import brightsquidLogo from '../../img/brightsquid_logo.PNG';
 import * as React from "react";
-import App from "../../App.js";
+import "../../App.css";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -116,7 +116,7 @@ export default function Registration() {
 			<Grid container component="main" sx={{ height: "100%" , width: "100%"}} marginLeft={4}>
 				<CssBaseline />
 				{/* TO-DO: Fix imaging dimensions to replicate figma mock-ups */}
-				<Grid
+				<Grid 
 					item
 					xs={false}
 					sm={4}
@@ -163,7 +163,7 @@ export default function Registration() {
 							component="form"
 							sx={{ mt: 1 }}
 						>
-							<Typography variant="bodyBS"> Username </Typography>
+							<Typography component={"bodyBS"}> Username </Typography>
 							<TextField
 								margin="normal"
 								required

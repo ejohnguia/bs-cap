@@ -5,11 +5,21 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link, useLocation } from "react-router-dom";
 
 const steps = ['Welcome', 'Email and Password', 'Practice  Details'];
 
 export default function HorizontalLinearStepper() {
-  const [activeStep, setActiveStep] = React.useState(2);    // TO-DO: somehow dynamically change this state per page
+  const location = useLocation();
+  console.log(location);
+  var defaultValue = 0;
+  if (location.pathname === "/registration/practice-details") {
+    defaultValue = 2;
+  } else if (location.pathname === "/registration") {
+    defaultValue = 1;
+  }
+
+  const [activeStep, setActiveStep] = React.useState(defaultValue);    // TO-DO: somehow dynamically change this state per page
   const [skipped, setSkipped] = React.useState(new Set());
 
   const isStepSkipped = (step) => {
@@ -24,6 +34,7 @@ export default function HorizontalLinearStepper() {
     }
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    console.log(activeStep);
     setSkipped(newSkipped);
   };
 
@@ -71,13 +82,19 @@ export default function HorizontalLinearStepper() {
               color="inherit"
               disabled={activeStep === 0}
               onClick={handleBack}
+              component={Link}
+              to="/registration"
               sx={{ mr: 1 }}
             >
               Back
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
 
-            <Button onClick={handleNext}>
+            <Button 
+              onClick={handleNext}
+              component={Link}
+              to="/registration/practice-details"
+            >
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </Box>

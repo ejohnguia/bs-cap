@@ -8,7 +8,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Link, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -59,6 +59,7 @@ import axios from "axios";
 const theme = createTheme();
 
 export default function Registration() {
+	const navigate = useNavigate();
 	const [username, setUsername] = useState("");
 	// Creates states for fields
 	// Create a state var to hold the password strength
@@ -99,7 +100,7 @@ export default function Registration() {
 				alert("Could not create account. Please try again");
 			});
 		console.log(username, ", ", password, ", ", passwordConfirm);
-		Navigate("/registration/practice-details");
+		navigate("/registration/practice-details");
 	}
 
 	return (

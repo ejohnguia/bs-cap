@@ -17,6 +17,8 @@ import MedicalPhoto from "../assets/props/MedicalPhotoProp.js";
 import RandomMessage from "../assets/props/RandomMessageProp.js";
 import bsLogo from "../assets/images/Q.jpg";
 
+import HorizontalLinearStepper from "../../stepper";
+
 const theme = createTheme();
 
 // User information
@@ -95,7 +97,9 @@ export default function Welcome() {
 							Setup Account
 						</Button>
 					</Box>
-
+					<Grid marginLeft={4} marginRight={4}>
+						<HorizontalLinearStepper> </HorizontalLinearStepper>
+					</Grid>
 					<Copyright sx={{ mt: 5, bottom: 0 }} />
 				</Grid>
 			</Grid>

@@ -28,7 +28,6 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import HorizontalLinearStepper from "../../stepper";
-import setActiveStep from "../../stepper";
 
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -54,9 +53,6 @@ import PasswordStrengthBar from "react-password-strength-bar";
 // 	password = inputPassword
 // 	return <PasswordMeter password/>;
 // }
-
-// import HorizontalLinearStepper from "../../stepper";
-// import setActiveStep from "../../stepper";
 
 import axios from "axios";
 
@@ -177,43 +173,12 @@ export default function Registration() {
 								id="username"
 								label="Username"
 								name="username"
-								// autoComplete="John"
 								autoFocus
 							/>
-							{/* <Typography variant="body1"> Last Name </Typography>
-							<TextField
-								margin="normal"
-								required
-								fullWidth
-								id="last_name"
-								label="Last Name"
-								name="last_name"
-								// autoComplete="Doe"
-								autoFocus */}
-							{/* /> */}
-							{/* <FormControlLabel
-								control={
-									<Checkbox
-										value="remember"
-										color="primary"
-									/>
-								}
-								label="Remember me"
-							/> */}
 							<Typography variant="body1">
 								{" "}
 								Create a Password{" "}
 							</Typography>
-							{/* <TextField
-								margin="normal"
-								required
-								fullWidth
-								id="password"
-								label="Password"
-								name="password"
-								// autoComplete="Doe"
-								autoFocus
-							/> */}
 							<OutlinedInput
 								onChange={(e) => setPassword(e.target.value)}
 								label="Password"
@@ -240,44 +205,16 @@ export default function Registration() {
 									</InputAdornment>
 								}
 							/>
-							{/* TODO: Password meter */}
-							<Typography variant="body1">
-								{" "}
-								PASSWORD METER PLACEHOLDER{" "}
-							</Typography>
-
+							{/* Password meter */}
 							<PasswordStrengthBar password={password} />
-
 							<Typography variant="body1">
 								{" "}
 								Confirm Password{" "}
 							</Typography>
-							{/* <Password value={value} onChange={(e) => setValue(e.target.value)} feedback={false} /> */}
-
-							{/* <PasswordStrengthBar password={password} /> */}
-							{/* function PasswordMeterK() {
-								return (
-									<div className="PasswordMeterK">
-										<div style={{padding: "40px"}}>
-										<Password feedback={false}
-
-											/>
-										</div>
-									</div>
-											
-								);
-
-							} */}
-
 							<OutlinedInput
 								onChange={(e) => {
 									setPasswordConfirm(e.target.value);
 								}}
-								// onChange={(e) => {
-								// 	if (password === e.target.value) {
-								// 		setPasswordConfirm(e.target.value);
-								// 	}
-								// }}
 								label="Password"
 								fullWidth
 								id="outlined-adornment-password"
@@ -301,37 +238,73 @@ export default function Registration() {
 									</InputAdornment>
 								}
 							/>
+							{/* About you section*/}
 
-							{/* About you section */}
-							<Typography variant="h6">About You</Typography>
-
-							<Grid item xs={5} mt={5}>
-								<Typography mb={2}>
-									Title{" "}
-									<strong
-										className="asterisk"
-										style={{ color: "red" }}
-									>
-										{" "}
-										*{" "}
-									</strong>
+							<Grid item xs={5}>
+								<Typography variant="body1" mt={7}>
+									{" "}
+									<strong> About you </strong>
 								</Typography>
-								<FormControl fullWidth>
-									<InputLabel> Title </InputLabel>
-									{/* TO-DO: fill with actual data */}
-									<Select
-										id="clinic-select"
-										label="Clinic Type"
+							</Grid>
+							<Grid container spacing={12}>
+								<Grid item xs={5}>
+									<Typography>Role</Typography>
+									<RadioGroup
+										row
+										aria-labelledby="demo-row-radio-buttons-group-label"
+										name="row-radio-buttons-group"
 									>
+										<FormControlLabel
+											value="Clinician"
+											control={<Radio />}
+											label="Clinician"
+										/>
+										<FormControlLabel
+											value="Staff"
+											control={<Radio />}
+											label="Staff"
+										/>
+									</RadioGroup>
+								</Grid>
+
+								<Grid item xs={5}>
+									<Typography mb={2}> Specialty</Typography>
+									<FormControl fullWidth>
+										<InputLabel> Specialty </InputLabel>
+										{/* TO-DO: fill with actual data */}
+										<Select
+											id="specialty-select"
+											label="Specialty"
+										>
+											<MenuItem value={10}>
+												specialty
+											</MenuItem>
+											<MenuItem value={20}>
+												specialty
+											</MenuItem>
+											<MenuItem value={30}>
+												specialty
+											</MenuItem>
+										</Select>
+									</FormControl>
+								</Grid>
+							</Grid>
+							{/* TO-DO: fill with actual data */}
+							{/* 
+							<Grid item xs={5} mt={5}>
+									
+									<Typography  mb={2}>Title <strong className='asterisk' style={{color: "red"}}> * </strong></Typography>
+									<FormControl fullWidth>
+									
+									<InputLabel> Title </InputLabel>
+									<Select id="clinic-select" label="Clinic Type">
 										<MenuItem value={0}>Dental</MenuItem>
 										<MenuItem value={0}>Family</MenuItem>
 										<MenuItem value={0}>Hospital</MenuItem>
-										<MenuItem value={0}>
-											Mental Health{" "}
-										</MenuItem>
-									</Select>
-								</FormControl>
-							</Grid>
+										<MenuItem value={0}>Mental Health </MenuItem>
+									</Select> 
+									</FormControl>
+									</Grid>*/}
 							<Button
 								onClick={handleSubmitForm}
 								id="next-steps-btn"
@@ -343,11 +316,7 @@ export default function Registration() {
 							</Button>
 
 							<Grid container>
-								<Grid item xs>
-									{/* <Link href="#" variant="body2">
-										Forgot password?
-									</Link> */}
-								</Grid>
+								<Grid item xs></Grid>
 								<HorizontalLinearStepper>
 									{" "}
 								</HorizontalLinearStepper>

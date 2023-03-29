@@ -18,8 +18,7 @@ import RandomMessage from "../assets/props/RandomMessageProp.js";
 import bsLogo from "../assets/images/Q.jpg";
 
 import HorizontalLinearStepper from "../../stepper";
-
-const theme = createTheme();
+import customTheme from "../../style";
 
 // User information
 const email = "julie1234_@gmail.com";
@@ -27,7 +26,7 @@ const clinic = "Panatella Dental";
 
 export default function Welcome() {
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={customTheme}>
 			<Grid container component="main" sx={{ height: "100vh" }}>
 				<CssBaseline />
 				<Grid

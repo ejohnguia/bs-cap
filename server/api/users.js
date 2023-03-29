@@ -3,15 +3,7 @@
 const express = require("express");
 const router = express.Router();
 
-const User = require("../../model/schemas/Users.model");
-
-// Gets all users
-router.get("/", (req, res) => {
-	User.find()
-
-		.then((users) => res.json(users))
-		.catch((err) => console.log(err));
-});
+const User = require("../schemas/Clinic.model");
 
 // Adds new user into the db
 router.post("/", (req, res) => {

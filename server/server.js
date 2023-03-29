@@ -1,8 +1,5 @@
 /** @format */
 
-// For reference
-// https://www.freecodecamp.org/news/deploying-a-mern-application-using-mongodb-atlas-to-heroku/
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -16,8 +13,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // API
-const users = require("/api/users");
-app.use("/api/users", users);
+const users = require("./api/users.js");
+app.use("./api/users.js", users);
 
 // Joining Build
 app.use(express.static(path.join(__dirname, "../build")));
@@ -26,7 +23,7 @@ app.get("*", (req, res) => {
 });
 
 // Checking port
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
 	console.log(`Server started on port ${port}`);
 });

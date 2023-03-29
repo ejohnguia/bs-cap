@@ -88,13 +88,12 @@ export default function Registration() {
 			return;
 		}
 		axios
-			.post("../../controller/api/users.js", {
+			.post("../../../server/api/users.js", {
 				username: username,
 				password: password,
 			})
 			.then(function () {
 				alert("User created successfully");
-				window.location.reload();
 			})
 			.catch(function () {
 				alert("Could not create account. Please try again");

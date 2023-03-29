@@ -27,7 +27,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 
 import { useEffect, useState } from "react";
-// import customTheme from "../../style";
+import customTheme from "../../style";
 
 export default function PracticeDetails() {
 	const [value, setValue] = useState(false);

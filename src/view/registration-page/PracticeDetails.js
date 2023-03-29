@@ -38,7 +38,6 @@ export default function PracticeDetails() {
 		clinicSubType: "",
 		country: "",
 		province: "",
-		city: ""
 	  });
 	
 	const handleInputChange = (event) => {
@@ -52,8 +51,7 @@ export default function PracticeDetails() {
 			formState.clinicType !== "" &&
 			formState.clinicSubType !== "" &&
 			formState.country !== "" &&
-			formState.province !== "" &&
-			formState.city !== ""
+			formState.province !== ""
 		);
 	  };
 
@@ -66,26 +64,9 @@ export default function PracticeDetails() {
 		}
 	};
 
-	// Find a way import this 
-	const theme = createTheme({
-		palette: {
-		primary: {
-			main: '#1074AE',
-			constrastText: "black"
-		},
-		secondary: {
-			main: '#55C9F4',
-		},
-		inherit: {
-			main: '#B3B3B3',				
-			constrastText: "#FFFF" // not working :(
-		},
-		},
-	});
-
 	return (
 		<form onSubmit={handleSubmit}>
-			<ThemeProvider theme={theme}>
+			<ThemeProvider theme={customTheme}>
 				<Grid container component="main" sx={{ height: "100vh"}}>
 					<CssBaseline />
 					<Grid
@@ -143,9 +124,10 @@ export default function PracticeDetails() {
 									<Grid item xs={5} mt={7}>
 										<Typography variant="body1"> Practice Phone </Typography>
 										<PhoneInput
-										fullWidth
+											containerStyle={{margin:'10px'}}
+											fullWidth
 											// fix me, label disappear, similar to text fields
-											specialLabel={""}
+											specialLabel={"Practice Phone"}
 											country={'ca'}
 											inputProps={{shrink: "true"}}
 											disableDropdown={true}
@@ -230,17 +212,24 @@ export default function PracticeDetails() {
 									<Grid item xs={2}/>	{/* Empty grid item to align the City dropdown*/}
 
 									<Grid item xs={5} mt={5}>
-										<Typography  mb={2}>City<strong className='asterisk' style={{color: "red"}}> * </strong></Typography>
-										<FormControl fullWidth>
-										<InputLabel> City </InputLabel>
-										{/* TO-DO: fill with actual data */}
-										<Select name="city" id="city-select" label="City" onChange={handleInputChange}>
-											<MenuItem value={10}>Calgary</MenuItem>
-											<MenuItem value={20}>Edmonton</MenuItem>
-											<MenuItem value={30}>City 1</MenuItem>
-											<MenuItem value={40}>City 2</MenuItem>
-										</Select>
-										</FormControl>
+										<Typography>City</Typography>
+										<TextField
+											margin="normal"
+											fullWidth
+											id="city_name"
+											label="City"
+											name="city"			
+										/>
+									</Grid>
+									<Grid item xs={5} mt={5}>
+										<Typography>Address</Typography>
+										<TextField
+											margin="normal"
+											fullWidth
+											id="address"
+											label="Address"
+											name="address"			
+										/>
 									</Grid>
 								</Grid>
 				
@@ -261,7 +250,6 @@ export default function PracticeDetails() {
 										<Button id="next-btn" variant="contained" disabled={!isFormFilled()} color={isFormFilled()  ? "primary" : "inherit"}>Next</Button>
 									</Grid>
 								</Grid>
-
 							</Box>
 						</Box>
 						<Copyright sx={{ mt: 5 }} />

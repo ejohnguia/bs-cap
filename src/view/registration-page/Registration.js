@@ -2,19 +2,17 @@
 // import brightsquidLogo from '../../img/brightsquid_logo.PNG';
 import React, { useState, useEffect } from "react";
 import "../../App.css";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import { useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import Copyright from "../assets/props/Copyrights.js";
 import MedicalPhoto from "../assets/props/MedicalPhotoProp.js";
 
@@ -34,29 +32,14 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import { stepperClasses } from "@mui/material";
 
 import PasswordStrengthBar from "react-password-strength-bar";
+import customTheme from "../../style";
 
 // https://www.npmjs.com/package/check-password-strength
 // https://www.npmjs.com/package/react-password-strength-bar
 
-// NOT USED
-// // Testing Password from youtube vid
-// import {Password} from "primereact/password";
-// import "primereact/resources/themes/lara-light-indigo/theme.css"; // theme
-// import "primereact/resources/primereact.min.css"; // core css
-// import "primeicons/primeicons.css"; //icons
-
-// function PasswordMeterComponent() {
-// 	const [inputPassword, setInputValue] = useState('');
-// 	password = inputPassword
-// 	return <PasswordMeter password/>;
-// }
-
 import axios from "axios";
-
-const theme = createTheme();
 
 export default function Registration() {
 	const navigate = useNavigate();
@@ -104,7 +87,7 @@ export default function Registration() {
 	}
 
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={customTheme}>
 			<Grid
 				container
 				component="main"

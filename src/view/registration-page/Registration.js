@@ -33,13 +33,14 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import OutlinedInput from "@mui/material/OutlinedInput";
 
+// Backend
+import addUser from "../../controller/user/addUser";
+
 import PasswordStrengthBar from "react-password-strength-bar";
 import customTheme from "../../style";
 
 // https://www.npmjs.com/package/check-password-strength
 // https://www.npmjs.com/package/react-password-strength-bar
-
-import axios from "axios";
 
 export default function Registration() {
 	const navigate = useNavigate();
@@ -70,19 +71,15 @@ export default function Registration() {
 			alert("Please fill the password field");
 			return;
 		}
-		axios
-			.post("../../../server/api/users.js", {
-				username: username,
-				password: password,
-			})
-			.then(function () {
-				alert("User created successfully");
-			})
-			.catch(function () {
-				alert("Could not create account. Please try again");
-			});
+
+		if (addUser(username, password)) {
+			alert("User created successfully");
+			navigate("/registration/practice-details");
+		} else {
+			alert("Could not create account. Please try again");
+		}
+
 		console.log(username, ", ", password, ", ", passwordConfirm);
-		navigate("/registration/practice-details");
 	}
 
 	return (

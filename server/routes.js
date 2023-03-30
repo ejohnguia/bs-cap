@@ -1,7 +1,7 @@
 /** @format */
 
 const express = require("express");
-const userModel = require("../schemas/Users.model");
+const userModel = require("./schemas/Users.model");
 const app = express();
 
 // Adds new user into the db

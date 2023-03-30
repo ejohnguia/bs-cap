@@ -1,29 +1,30 @@
 /** @format */
 
 const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const path = require("path");
+const mongoose = require("mongoose");
+const Router = require("./routes");
+
 const app = express();
+require("dotenv").config();
 
-require("./database");
+app.use(express.json());
 
-// Parsing JSON data
-app.use(bodyParser.json());
-app.use(cors());
+const uri = process.env.DB_URI;
 
-// API
-const users = require("./api/users.js");
-app.use("./api/users.js", users);
-
-// Joining Build
-app.use(express.static(path.join(__dirname, "../build")));
-app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "../build"));
+mongoose.connect(uri, {
+	useNewUrlParser: true,
+	useFindAndModify: false,
+	useUnifiedTopology: true,
 });
 
-// Checking port
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-	console.log(`Server started on port ${port}`);
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function () {
+	console.log("Database connected successfully");
+});
+
+app.use(Router);
+
+app.listen(3000, () => {
+	console.log("Server is running at port 3000");
 });

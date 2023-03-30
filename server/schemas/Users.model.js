@@ -1,6 +1,6 @@
 /** @format */
 
-import Clinic from "./Clinic.model";
+const Clinic = require("./Clinic.model");
 
 const mongoose = require("mongoose");
 const { Schema } = mongoose;

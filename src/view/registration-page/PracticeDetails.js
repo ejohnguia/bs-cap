@@ -28,6 +28,9 @@ import "react-phone-input-2/lib/material.css";
 
 import { useEffect, useState } from "react";
 import customTheme from "../../style";
+import countries from "countrycitystatejson";
+
+import Autocomplete from '@mui/material/Autocomplete';
 
 export default function PracticeDetails() {
 	const [value, setValue] = useState(false);
@@ -64,10 +67,32 @@ export default function PracticeDetails() {
 		}
 	};
 
+	const [selectedCountry, setSelectedCountry] = useState("");
+	const [selectedProvince, setSelectedProvince] = useState("");
+	const [selectedShortName, setSelectedShortName] = useState("");
+
+	const handleCountryChange = (event) => {
+	  setSelectedCountry(event.target.value);
+	  
+		console.log(countries.getStatesByShort(selectedShortName).map((state) => (console.log(state))));
+
+	  setSelectedProvince("");
+	};
+  
+	const handleProvinceChange = (event) => {
+	  setSelectedProvince(event.target.value);
+	};
+
+	const handleMenuItemClick = (event, key) => {
+		console.log(key);
+		setSelectedShortName(key);
+	};
+	
 	return (
 		<form onSubmit={handleSubmit}>
 			<ThemeProvider theme={customTheme}>
 				<Grid container component="main" sx={{ height: "100vh"}}>
+
 					<CssBaseline />
 					<Grid
 						item
@@ -243,7 +268,7 @@ export default function PracticeDetails() {
 									</Grid>
 								</Grid>
 
-								{/* PRACTICE ADDRESS: Country, State/province and City */}
+								{/* PRACTICE ADDRESS: Country, State/province, City and address*/}
 								<Grid container spacing={12}>
 									<Grid item xs={2}>
 										<Typography variant="body1" mt={7}>
@@ -268,25 +293,37 @@ export default function PracticeDetails() {
 										</Typography>
 										<FormControl fullWidth>
 											<InputLabel> Country </InputLabel>
-											{/* TO-DO: fill with actual data */}
+											{/* ENHANCE: auto complete component */}
+											{/* <Autocomplete
+												options={countries.getCountries()}
+												getOptionLabel={(option) => option.label}
+												value={value}
+												onClick={(event) => handleMenuItemClick(event, country.shortName)} 
+												onChange={handleCountryChange}
+												renderInput={(params) => (
+													<TextField {...params} label="Select an option" />
+												)}
+												/> */}
 											<Select
-												name="country"
-												id="country-select"
-												label="Country"
-												onChange={handleInputChange}
-											>
-												<MenuItem value={10}>
-													Canada
+											labelId="country-label"
+											id="country-select"
+											value={selectedCountry}
+											label="Country"
+											onChange={handleCountryChange}>
+											{countries.getCountries().map((country) => (
+												<MenuItem 
+												key={country.shortName} 
+												onClick={(event) => handleMenuItemClick(event, country.shortName)} 
+												value={country.name}>
+													{country.name}
 												</MenuItem>
-												<MenuItem value={20}>
-													United States
-												</MenuItem>
-												<MenuItem value={30}>
-													Canada
-												</MenuItem>
+											))}
 											</Select>
 										</FormControl>
 									</Grid>
+									
+
+									
 									<Grid item xs={5}>
 										<Typography mb={2} mt={5}>
 											Province
@@ -298,47 +335,24 @@ export default function PracticeDetails() {
 												*{" "}
 											</strong>
 										</Typography>
-										<FormControl fullWidth>
-											<InputLabel> Province </InputLabel>
-											{/* TO-DO: fill with actual data */}
-											<Select
-												name="province"
+										{selectedCountry && (
+											<FormControl fullWidth>
+												<InputLabel> State/Province </InputLabel>
+												{/* TO-DO: fill with actual data */}
+												<Select
+												labelId="province-label"
 												id="province-select"
-												label="Province"
-												onChange={handleInputChange}
-											>
-												<MenuItem value={10}>
-													Alberta
-												</MenuItem>
-												<MenuItem value={30}>
-													British Columbia
-												</MenuItem>
-												<MenuItem value={20}>
-													Manitoba
-												</MenuItem>
-												<MenuItem value={20}>
-													New Brunswick
-												</MenuItem>
-												<MenuItem value={20}>
-													Newfoundland and Labrador
-												</MenuItem>
-												<MenuItem value={20}>
-													Nova Scotia
-												</MenuItem>
-												<MenuItem value={20}>
-													Ontario
-												</MenuItem>
-												<MenuItem value={20}>
-													Prince Edward Island
-												</MenuItem>
-												<MenuItem value={20}>
-													Quebec
-												</MenuItem>
-												<MenuItem value={20}>
-													Saskatchewan
-												</MenuItem>
+												value={selectedProvince}
+												label="Province/State"
+												onChange={handleProvinceChange}>
+												{countries.getStatesByShort(selectedShortName).map((state) => (
+													<MenuItem key={selectedShortName} value={state}> 
+														{state}
+													</MenuItem>
+												))}
 											</Select>
-										</FormControl>
+											</FormControl>
+										)}
 									</Grid>
 								</Grid>
 
@@ -418,3 +432,4 @@ export default function PracticeDetails() {
 		</form>
 	);
 }
+

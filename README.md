@@ -22,6 +22,29 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+# How to Run
+
+_This is assuming that you've cloned the repository and that you have `npm` installed._
+
+You will need to open 2 terminals for this. Starting with the backend, then following the frontend.
+
+## Backend
+
+### Steps
+
+1. Select one of the terminals
+2. Go into the `\server` folder of the repository
+3. Install all packages required using `npm i`
+4. Then run `npm run dev` for development server
+
+## Frontend
+
+### Steps
+
+1. Select the other terminal
+2. Install all packages required using `npm i`
+3. Then run `npm start` and the frontend will get displayed
+
 <!-- ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

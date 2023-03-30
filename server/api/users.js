@@ -3,7 +3,7 @@
 const express = require("express");
 const router = express.Router();
 
-const User = require("../schemas/Clinic.model");
+const User = require("../schemas/Users.model");
 
 // Adds new user into the db
 router.post("/", (req, res) => {

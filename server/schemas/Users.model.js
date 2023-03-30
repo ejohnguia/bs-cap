@@ -1,6 +1,6 @@
 /** @format */
 
-import Clinic from "./Clinic.model";
+const Clinic = require("./Clinic.model");
 
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
@@ -23,4 +23,6 @@ const UserSchema = new Schema({
 	// },
 });
 
-module.exports = mongoose.model("User", UserSchema, "Users");
+const User = mongoose.model("User", UserSchema);
+
+module.exports = User;

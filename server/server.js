@@ -23,7 +23,8 @@ db.once("open", function () {
 });
 
 app.use(Router);
+const port = process.env.PORT || 5000;
 
-app.listen(3000, () => {
-	console.log("Server is running at port 3000");
+app.listen(port, () => {
+	console.log(`Server started on port ${port}`);
 });

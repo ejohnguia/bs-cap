@@ -13,7 +13,6 @@ const uri = process.env.DB_URI;
 
 mongoose.connect(uri, {
 	useNewUrlParser: true,
-	useFindAndModify: false,
 	useUnifiedTopology: true,
 });
 

@@ -10,7 +10,7 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import MessagesList from "../../../model/propData/MessageList";
+import MessagesList from "./data/MessageList";
 
 export default class RandomMessage extends React.Component {
 	render() {

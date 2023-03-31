@@ -53,6 +53,7 @@ export default function Registration() {
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+	const [specialty, setSpecialty] = useState("");
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
 
 	const handleMouseDownPassword = (event) => {
@@ -74,6 +75,8 @@ export default function Registration() {
 			return;
 		}
 
+		// TODO: Add new fields in the schema
+		// if (addUser(username, password, specialty)) {
 		if (addUser(username, password)) {
 			alert("User created successfully");
 			navigate("/registration/practice-details");
@@ -257,17 +260,22 @@ export default function Registration() {
 											id="specialty-select"
 											label="Specialty"
 										>
-											{SpecialtiesList.map((person) => (
-												<MenuItem
-													value={person.title
-														.toLowerCase()
-														.replace(/_/g, " ")}
-												>
-													{person.title
-														.toLowerCase()
-														.replace(/_/g, " ")}
-												</MenuItem>
-											))}
+											{SpecialtiesList.map((person) => {
+												let data = person.title
+													.toLowerCase()
+													.replace(/_/g, " ");
+												return (
+													<MenuItem
+														value={data}
+														on
+														onClick={() => {
+															setSpecialty(data);
+														}}
+													>
+														{data}
+													</MenuItem>
+												);
+											})}
 										</Select>
 									</FormControl>
 								</Grid>

@@ -2,23 +2,25 @@
 
 import axios from "axios";
 
-export default function addUser(username, password) {
-	const data = `{\r\n    "username": "${username}",\r\n    "password": "${password}"\r\n}`;
+export default async function addUser(username, password) {
+	let newdata = JSON.stringify({
+		username: username,
+		password: password,
+	});
 
-	const config = {
-		method: "post",
-		maxBodyLength: Infinity,
+	let config = {
 		url: "http://localhost:5000/add_user",
-		headers: {},
-		data: data,
+		data: newdata,
+		header: { "Content-Type": "application/json" },
 	};
 
-	axios
-		.request(config)
-		.then(() => {
-			return true;
-		})
-		.catch(() => {
-			return false;
+	try {
+		axios.post(config.url, config.data, {
+			headers: config.header,
 		});
+		return true;
+	} catch (error) {
+		console.error(error.response.data);
+		return false;
+	}
 }

@@ -38,6 +38,7 @@ import addUser from "../../controller/user/addUser";
 
 import PasswordStrengthBar from "react-password-strength-bar";
 import customTheme from "../../style";
+import SpecialtiesList from "../assets/props/data/SpecialtiesList";
 
 // https://www.npmjs.com/package/check-password-strength
 // https://www.npmjs.com/package/react-password-strength-bar
@@ -252,20 +253,21 @@ export default function Registration() {
 									<Typography mb={2}> Specialty</Typography>
 									<FormControl fullWidth>
 										<InputLabel> Specialty </InputLabel>
-										{/* TO-DO: fill with actual data */}
 										<Select
 											id="specialty-select"
 											label="Specialty"
 										>
-											<MenuItem value={10}>
-												specialty
-											</MenuItem>
-											<MenuItem value={20}>
-												specialty
-											</MenuItem>
-											<MenuItem value={30}>
-												specialty
-											</MenuItem>
+											{SpecialtiesList.map((person) => (
+												<MenuItem
+													value={person.title
+														.toLowerCase()
+														.replace(/_/g, " ")}
+												>
+													{person.title
+														.toLowerCase()
+														.replace(/_/g, " ")}
+												</MenuItem>
+											))}
 										</Select>
 									</FormControl>
 								</Grid>

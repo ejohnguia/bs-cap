@@ -30,19 +30,19 @@ import { useEffect, useState } from "react";
 import customTheme from "../../style";
 import countries from "countrycitystatejson";
 
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete from "@mui/material/Autocomplete";
 
 export default function PracticeDetails() {
+	const [photo, setPhoto] = useState(MedicalPhoto);
 	const [value, setValue] = useState(false);
-
 	const [formState, setFormState] = useState({
 		practiceName: "",
 		clinicType: "",
 		clinicSubType: "",
 		country: "",
 		province: "",
-	  });
-	
+	});
+
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setFormState((prevState) => ({ ...prevState, [name]: value }));
@@ -72,27 +72,30 @@ export default function PracticeDetails() {
 	const [selectedShortName, setSelectedShortName] = useState("");
 
 	const handleCountryChange = (event) => {
-	  setSelectedCountry(event.target.value);
-	  
-		console.log(countries.getStatesByShort(selectedShortName).map((state) => (console.log(state))));
+		setSelectedCountry(event.target.value);
 
-	  setSelectedProvince("");
+		console.log(
+			countries
+				.getStatesByShort(selectedShortName)
+				.map((state) => console.log(state))
+		);
+
+		setSelectedProvince("");
 	};
-  
+
 	const handleProvinceChange = (event) => {
-	  setSelectedProvince(event.target.value);
+		setSelectedProvince(event.target.value);
 	};
 
 	const handleMenuItemClick = (event, key) => {
 		console.log(key);
 		setSelectedShortName(key);
 	};
-	
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<ThemeProvider theme={customTheme}>
-				<Grid container component="main" sx={{ height: "100vh"}}>
-
+				<Grid container component="main" sx={{ height: "100vh" }}>
 					<CssBaseline />
 					<Grid
 						item
@@ -100,7 +103,7 @@ export default function PracticeDetails() {
 						sm={4}
 						md={3}
 						sx={{
-							backgroundImage: MedicalPhoto,
+							backgroundImage: photo,
 							backgroundRepeat: "no-repeat",
 							backgroundColor: (t) =>
 								t.palette.mode === "light"
@@ -177,12 +180,12 @@ export default function PracticeDetails() {
 											Practice Phone{" "}
 										</Typography>
 										<PhoneInput
-											containerStyle={{margin:'10px'}}
+											containerStyle={{ margin: "10px" }}
 											fullWidth
 											// fix me, label disappear, similar to text fields
 											specialLabel={"Practice Phone"}
-											country={'ca'}
-											inputProps={{shrink: "true"}}
+											country={"ca"}
+											inputProps={{ shrink: "true" }}
 											disableDropdown={true}
 											disableSearchIcon={true}
 											value={value}
@@ -305,25 +308,34 @@ export default function PracticeDetails() {
 												)}
 												/> */}
 											<Select
-											labelId="country-label"
-											id="country-select"
-											value={selectedCountry}
-											label="Country"
-											onChange={handleCountryChange}>
-											{countries.getCountries().map((country) => (
-												<MenuItem 
-												key={country.shortName} 
-												onClick={(event) => handleMenuItemClick(event, country.shortName)} 
-												value={country.name}>
-													{country.name}
-												</MenuItem>
-											))}
+												labelId="country-label"
+												id="country-select"
+												value={selectedCountry}
+												label="Country"
+												onChange={handleCountryChange}
+											>
+												{countries
+													.getCountries()
+													.map((country) => (
+														<MenuItem
+															key={
+																country.shortName
+															}
+															onClick={(event) =>
+																handleMenuItemClick(
+																	event,
+																	country.shortName
+																)
+															}
+															value={country.name}
+														>
+															{country.name}
+														</MenuItem>
+													))}
 											</Select>
 										</FormControl>
 									</Grid>
-									
 
-									
 									<Grid item xs={5}>
 										<Typography mb={2} mt={5}>
 											Province
@@ -337,20 +349,35 @@ export default function PracticeDetails() {
 										</Typography>
 										{selectedCountry && (
 											<FormControl fullWidth>
-												<InputLabel> State/Province </InputLabel>
+												<InputLabel>
+													{" "}
+													State/Province{" "}
+												</InputLabel>
 												{/* TO-DO: fill with actual data */}
 												<Select
-												labelId="province-label"
-												id="province-select"
-												value={selectedProvince}
-												label="Province/State"
-												onChange={handleProvinceChange}>
-												{countries.getStatesByShort(selectedShortName).map((state) => (
-													<MenuItem key={selectedShortName} value={state}> 
-														{state}
-													</MenuItem>
-												))}
-											</Select>
+													labelId="province-label"
+													id="province-select"
+													value={selectedProvince}
+													label="Province/State"
+													onChange={
+														handleProvinceChange
+													}
+												>
+													{countries
+														.getStatesByShort(
+															selectedShortName
+														)
+														.map((state) => (
+															<MenuItem
+																key={
+																	selectedShortName
+																}
+																value={state}
+															>
+																{state}
+															</MenuItem>
+														))}
+												</Select>
 											</FormControl>
 										)}
 									</Grid>
@@ -366,7 +393,7 @@ export default function PracticeDetails() {
 											fullWidth
 											id="city_name"
 											label="City"
-											name="city"			
+											name="city"
 										/>
 									</Grid>
 									<Grid item xs={5} mt={5}>
@@ -376,7 +403,7 @@ export default function PracticeDetails() {
 											fullWidth
 											id="address"
 											label="Address"
-											name="address"			
+											name="address"
 										/>
 									</Grid>
 								</Grid>
@@ -432,4 +459,3 @@ export default function PracticeDetails() {
 		</form>
 	);
 }
-

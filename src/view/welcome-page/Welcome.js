@@ -1,6 +1,6 @@
 /** @format */
 
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -25,6 +25,8 @@ const email = "julie1234_@gmail.com";
 const clinic = "Panatella Dental";
 
 export default function Welcome() {
+	const [photo, setPhoto] = useState(MedicalPhoto);
+
 	return (
 		<ThemeProvider theme={customTheme}>
 			<Grid container component="main" sx={{ height: "100vh" }}>
@@ -35,7 +37,7 @@ export default function Welcome() {
 					sm={4}
 					md={7}
 					sx={{
-						backgroundImage: MedicalPhoto,
+						backgroundImage: photo,
 						backgroundRepeat: "no-repeat",
 						backgroundColor: (t) =>
 							t.palette.mode === "light"

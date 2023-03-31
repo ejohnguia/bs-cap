@@ -44,6 +44,7 @@ import customTheme from "../../style";
 
 export default function Registration() {
 	const navigate = useNavigate();
+	const [photo, setPhoto] = useState(MedicalPhoto);
 	const [username, setUsername] = useState("");
 	// Creates states for fields
 	// Create a state var to hold the password strength
@@ -98,7 +99,7 @@ export default function Registration() {
 					sm={4}
 					md={3}
 					sx={{
-						backgroundImage: MedicalPhoto,
+						backgroundImage: photo,
 						backgroundRepeat: "no-repeat",
 						backgroundColor: (t) =>
 							t.palette.mode === "light"

@@ -10,4 +10,17 @@ export const OrgSubType = {
 		}
 		return res;
 	},
+	getSubTypeByOrg: (org) => {
+		let res = [];
+		if (typeof OrgSubTypeList[org] !== "undefined") {
+			if (typeof OrgSubTypeList[org].SubType !== "undefined") {
+				res = OrgSubTypeList[org].SubType;
+				return res;
+			} else {
+				return res;
+			}
+		} else {
+			return res;
+		}
+	},
 };

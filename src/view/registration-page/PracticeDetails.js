@@ -266,23 +266,22 @@ export default function PracticeDetails() {
 												label="Clinic Subtype"
 												onChange={handleInputChange}
 											>
-												{OrgSubType.getOrg().map(
-													(org) => {
-														let data = org;
-														return (
-															<MenuItem
-																value={data}
-																onClick={() => {
-																	setOrgSubType(
-																		data
-																	);
-																}}
-															>
-																{data}
-															</MenuItem>
-														);
-													}
-												)}
+												{OrgSubType.getSubTypeByOrg(
+													orgType
+												).map((subType) => {
+													return (
+														<MenuItem
+															value={subType}
+															onClick={() => {
+																setOrgSubType(
+																	subType
+																);
+															}}
+														>
+															{subType}
+														</MenuItem>
+													);
+												})}
 											</Select>
 										</FormControl>
 									</Grid>

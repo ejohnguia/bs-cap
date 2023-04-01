@@ -29,12 +29,18 @@ import "react-phone-input-2/lib/material.css";
 import { useEffect, useState } from "react";
 import customTheme from "../../style";
 import countries from "countrycitystatejson";
+import { OrgSubType } from "../assets/props/OrgSubTypeProp";
 
 import Autocomplete from "@mui/material/Autocomplete";
+
+// TODO: if someone could look at the clinic type and subtype stuff. u can ask chatgpt for it
 
 export default function PracticeDetails() {
 	const [photo, setPhoto] = useState(MedicalPhoto);
 	const [value, setValue] = useState(false);
+	// TODO: Consolidate orgType and formState
+	const [orgType, setOrgType] = useState("");
+	const [orgSubType, setOrgSubType] = useState("");
 	const [formState, setFormState] = useState({
 		practiceName: "",
 		clinicType: "",
@@ -212,25 +218,28 @@ export default function PracticeDetails() {
 										</Typography>
 										<FormControl fullWidth>
 											<InputLabel>Clinic Type</InputLabel>
-											{/* TO-DO: fill with actual data */}
 											<Select
 												name="clinicType"
 												id="clinic-select"
 												label="Clinic Type"
 												onChange={handleInputChange}
 											>
-												<MenuItem value={0}>
-													Dental
-												</MenuItem>
-												<MenuItem value={0}>
-													Family
-												</MenuItem>
-												<MenuItem value={0}>
-													Hospital
-												</MenuItem>
-												<MenuItem value={0}>
-													Mental Health{" "}
-												</MenuItem>
+												{OrgSubType.getOrg().map(
+													(org) => {
+														return (
+															<MenuItem
+																value={org}
+																onClick={() => {
+																	setOrgType(
+																		org
+																	);
+																}}
+															>
+																{org}
+															</MenuItem>
+														);
+													}
+												)}
 											</Select>
 										</FormControl>
 									</Grid>
@@ -257,15 +266,23 @@ export default function PracticeDetails() {
 												label="Clinic Subtype"
 												onChange={handleInputChange}
 											>
-												<MenuItem value={10}>
-													Dental Laboratory
-												</MenuItem>
-												<MenuItem value={10}>
-													Dental Laboratory
-												</MenuItem>
-												<MenuItem value={10}>
-													Dental Laboratory
-												</MenuItem>
+												{OrgSubType.getOrg().map(
+													(org) => {
+														let data = org;
+														return (
+															<MenuItem
+																value={data}
+																onClick={() => {
+																	setOrgSubType(
+																		data
+																	);
+																}}
+															>
+																{data}
+															</MenuItem>
+														);
+													}
+												)}
 											</Select>
 										</FormControl>
 									</Grid>

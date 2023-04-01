@@ -1,8 +1,7 @@
 /** @format */
 
-const OrgSubTypeList = [
-	{
-		OrgType: "Physician's Office",
+const OrgSubTypeList = {
+	"Physician's Office": {
 		SubType: [
 			"Ambulatory Surgical Centre",
 			"Anesthesiologist Office",
@@ -35,8 +34,7 @@ const OrgSubTypeList = [
 			"Other",
 		],
 	},
-	{
-		OrgType: "Dentists's Office",
+	"Dentists's Office": {
 		SubType: [
 			"DMD",
 			"Dental Health Services, General Practice",
@@ -53,8 +51,7 @@ const OrgSubTypeList = [
 			"Other",
 		],
 	},
-	{
-		OrgType: "Hospital or Care Home",
+	"Hospital or Care Home": {
 		SubType: [
 			"Convalescent Home",
 			"Domiciliary Care",
@@ -64,8 +61,7 @@ const OrgSubTypeList = [
 			"Other",
 		],
 	},
-	{
-		OrgType: "Laboratory",
+	"Laboratory": {
 		SubType: [
 			"Blood Analysis Laboratory",
 			"Dental Laboratory",
@@ -74,8 +70,7 @@ const OrgSubTypeList = [
 			"Other",
 		],
 	},
-	{
-		OrgType: "Other Health Care Provider",
+	"Other Health Care Provider": {
 		SubType: [
 			"Chiropractor Office",
 			"Optometrists Clinic",
@@ -119,8 +114,7 @@ const OrgSubTypeList = [
 			"Other",
 		],
 	},
-	{
-		OrgType: "Non Medical",
+	"Non Medical": {
 		SubType: [
 			"Law Firm",
 			"Educational Facility",
@@ -133,6 +127,6 @@ const OrgSubTypeList = [
 			"Other",
 		],
 	},
-];
+};
 
 export default OrgSubTypeList;

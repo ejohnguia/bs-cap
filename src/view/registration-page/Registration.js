@@ -267,7 +267,6 @@ export default function Registration() {
 												return (
 													<MenuItem
 														value={data}
-														on
 														onClick={() => {
 															setSpecialty(data);
 														}}

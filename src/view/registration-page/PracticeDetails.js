@@ -37,7 +37,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 export default function PracticeDetails() {
 	const [photo, setPhoto] = useState(MedicalPhoto);
-	const [value, setValue] = useState(false);
+	const [phoneNumber, setPhoneNumber] = useState(false);
 	// TODO: Consolidate orgType and formState
 	const [orgType, setOrgType] = useState("");
 	const [orgSubType, setOrgSubType] = useState("");
@@ -73,10 +73,11 @@ export default function PracticeDetails() {
 		}
 	};
 
-	const [selectedCountry, setSelectedCountry] = useState("");
+	const [selectedCountry, setSelectedCountry] = useState("Canada");
 	const [selectedProvince, setSelectedProvince] = useState("");
-	const [selectedShortName, setSelectedShortName] = useState("");
+	const [selectedShortName, setSelectedShortName] = useState("CA");
 
+	console.log(selectedCountry);
 	const handleCountryChange = (event) => {
 		setSelectedCountry(event.target.value);
 
@@ -188,14 +189,13 @@ export default function PracticeDetails() {
 										<PhoneInput
 											containerStyle={{ margin: "10px" }}
 											fullWidth
-											// fix me, label disappear, similar to text fields
-											specialLabel={"Practice Phone"}
+											// fix me, label appear, similar to text fields
+											specialLabel={""}
 											country={"ca"}
 											inputProps={{ shrink: "true" }}
 											disableDropdown={true}
-											disableSearchIcon={true}
-											value={value}
-											onChange={setValue}
+											value={phoneNumber}
+											onChange={setPhoneNumber}
 										/>
 									</Grid>
 								</Grid>
@@ -311,7 +311,6 @@ export default function PracticeDetails() {
 											</strong>
 										</Typography>
 										<FormControl fullWidth>
-											<InputLabel> Country </InputLabel>
 											{/* ENHANCE: auto complete component */}
 											{/* <Autocomplete
 												options={countries.getCountries()}
@@ -327,7 +326,6 @@ export default function PracticeDetails() {
 												labelId="country-label"
 												id="country-select"
 												value={selectedCountry}
-												label="Country"
 												onChange={handleCountryChange}
 											>
 												{countries

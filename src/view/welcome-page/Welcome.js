@@ -1,15 +1,19 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+	Avatar,
+	Box,
+	Button,
+	CssBaseline,
+	Grid,
+	useTheme,
+	useMediaQuery,
+	ThemeProvider,
+	Typography,
+	Stack,
+} from "@mui/material";
 
 // Assets
 import Copyright from "../assets/props/Copyrights.js";
@@ -25,7 +29,9 @@ const email = "julie1234_@gmail.com";
 const clinic = "Panatella Dental";
 
 export default function Welcome() {
-	const [photo, setPhoto] = useState(MedicalPhoto);
+	const theme = useTheme();
+	const [photo] = useState(MedicalPhoto);
+	const isScreenSmall = useMediaQuery(theme.breakpoints.down("md"));
 
 	return (
 		<ThemeProvider theme={customTheme}>
@@ -34,7 +40,7 @@ export default function Welcome() {
 				<Grid
 					item
 					xs={false}
-					sm={4}
+					sm={false}
 					md={7}
 					sx={{
 						backgroundImage: photo,
@@ -45,9 +51,20 @@ export default function Welcome() {
 								: t.palette.grey[900],
 						backgroundSize: "cover",
 						backgroundPosition: "center",
+						position: "relative",
 					}}
 				>
-					<RandomMessage></RandomMessage>
+					{!isScreenSmall && (
+						<Box
+							sx={{
+								mt: 20,
+								ml: 4,
+								p: 2,
+							}}
+						>
+							<RandomMessage />
+						</Box>
+					)}
 				</Grid>
 				<Grid item xs={12} sm={8} md={5} elevation={6} margin="auto">
 					<Box
@@ -56,7 +73,6 @@ export default function Welcome() {
 							mx: 4,
 							display: "flex",
 							flexDirection: "column",
-							// FIXME: Align items can be removed for a flex-start justification
 							alignItems: "center",
 							direction: "column",
 							justifyContent: "center",

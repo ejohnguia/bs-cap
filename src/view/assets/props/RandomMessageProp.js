@@ -32,7 +32,13 @@ export default class RandomMessage extends React.Component {
 				>
 					{Object.keys(MessagesList).map((key) => (
 						<SwiperSlide key={key}>
-							<Typography align="center">
+							<Typography
+								align="center"
+								sx={{
+									margin: "auto",
+									maxWidth: "75%",
+								}}
+							>
 								{MessagesList[key]}
 							</Typography>
 						</SwiperSlide>

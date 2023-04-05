@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { Link } from "react-router-dom";
+import { useTheme, useMediaQuery } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // Assets
@@ -25,7 +26,9 @@ const email = "julie1234_@gmail.com";
 const clinic = "Panatella Dental";
 
 export default function Welcome() {
+	const theme = useTheme();
 	const [photo, setPhoto] = useState(MedicalPhoto);
+	const isScreenSmall = useMediaQuery(theme.breakpoints.down("md"));
 
 	return (
 		<ThemeProvider theme={customTheme}>
@@ -34,7 +37,7 @@ export default function Welcome() {
 				<Grid
 					item
 					xs={false}
-					sm={4}
+					sm={false}
 					md={7}
 					sx={{
 						backgroundImage: photo,
@@ -45,9 +48,12 @@ export default function Welcome() {
 								: t.palette.grey[900],
 						backgroundSize: "cover",
 						backgroundPosition: "center",
+						position: "relative",
 					}}
 				>
-					<RandomMessage></RandomMessage>
+					{!isScreenSmall && (
+						<RandomMessage sx={{ margin: "auto" }}></RandomMessage>
+					)}
 				</Grid>
 				<Grid item xs={12} sm={8} md={5} elevation={6} margin="auto">
 					<Box
@@ -56,7 +62,6 @@ export default function Welcome() {
 							mx: 4,
 							display: "flex",
 							flexDirection: "column",
-							// FIXME: Align items can be removed for a flex-start justification
 							alignItems: "center",
 							direction: "column",
 							justifyContent: "center",

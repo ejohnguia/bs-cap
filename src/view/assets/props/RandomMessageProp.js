@@ -15,7 +15,14 @@ import MessagesList from "./data/MessageList";
 export default class RandomMessage extends React.Component {
 	render() {
 		return (
-			<Paper elevation={11}>
+			<Paper
+				elevation={11}
+				sx={{
+					margin: "auto",
+					maxWidth: "50%",
+					borderRadius: 5,
+				}}
+			>
 				<Swiper
 					spaceBetween={30}
 					centeredSlides={true}
@@ -37,6 +44,10 @@ export default class RandomMessage extends React.Component {
 								sx={{
 									margin: "auto",
 									maxWidth: "75%",
+									textAlign: "center",
+									display: "flex",
+									alignItems: "center",
+									p: 1,
 								}}
 							>
 								{MessagesList[key]}

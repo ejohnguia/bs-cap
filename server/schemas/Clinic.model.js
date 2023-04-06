@@ -6,7 +6,6 @@ const Schema = mongoose.Schema;
 const ClinicSchema = new Schema({
 	name: {
 		type: String,
-		unique: true,
 		lowercase: true,
 		required: true,
 	},
@@ -37,7 +36,10 @@ const ClinicSchema = new Schema({
 
 	city: {
 		type: String,
-		required: true,
+	},
+
+	address: {
+		type: String,
 	},
 });
 

@@ -46,14 +46,14 @@ import SpecialtiesList from "../assets/props/data/SpecialtiesList";
 export default function Registration() {
 	const navigate = useNavigate();
 	const [photo, setPhoto] = useState(MedicalPhoto);
+
 	const [username, setUsername] = useState("");
-	// Creates states for fields
-	// Create a state var to hold the password strength
-	// const [passwordStrength, setPasswordStrength] = React.useState(0);
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
-	const [showPassword, setShowPassword] = useState(false);
+	const [role, setRole] = useState("");
 	const [specialty, setSpecialty] = useState("");
+
+	const [showPassword, setShowPassword] = useState(false);
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
 
 	const handleMouseDownPassword = (event) => {
@@ -76,8 +76,7 @@ export default function Registration() {
 		}
 
 		// TODO: Add new fields in the schema
-		// if (addUser(username, password, specialty)) {
-		if (addUser(username, password)) {
+		if (addUser(username, password, role, specialty)) {
 			alert("User created successfully");
 			navigate("/registration/practice-details");
 		} else {
@@ -243,11 +242,13 @@ export default function Registration() {
 											value="Clinician"
 											control={<Radio />}
 											label="Clinician"
+											onClick={() => setRole("Clinician")}
 										/>
 										<FormControlLabel
 											value="Staff"
 											control={<Radio />}
 											label="Staff"
+											onClick={() => setRole("Staff")}
 										/>
 									</RadioGroup>
 								</Grid>

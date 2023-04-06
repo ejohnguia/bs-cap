@@ -1,7 +1,5 @@
 /** @format */
 
-const Clinic = require("./Clinic.model");
-
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
@@ -18,9 +16,13 @@ const UserSchema = new Schema({
 		required: true,
 	},
 
-	// clinic: {
-	// 	type: Clinic,
-	// },
+	role: {
+		type: String,
+	},
+
+	specialty: {
+		type: String,
+	},
 });
 
 const User = mongoose.model("User", UserSchema);

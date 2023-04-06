@@ -33,8 +33,6 @@ import { OrgSubType } from "../assets/props/OrgSubTypeProp";
 
 import Autocomplete from "@mui/material/Autocomplete";
 
-// TODO: if someone could look at the clinic type and subtype stuff. u can ask chatgpt for it
-
 export default function PracticeDetails() {
 	const [photo, setPhoto] = useState(MedicalPhoto);
 	const [phoneNumber, setPhoneNumber] = useState(false);
@@ -44,23 +42,30 @@ export default function PracticeDetails() {
 	const [formState, setFormState] = useState({
 		practiceName: "",
 		clinicType: "",
-		clinicSubType: "",
-		country: "",
-		province: "",
+		clinicSubType: ""
 	});
+
+	const [selectedCountry, setSelectedCountry] = useState("Canada");
+	const [selectedProvince, setSelectedProvince] = useState("");
+	const [selectedShortName, setSelectedShortName] = useState("CA");
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setFormState((prevState) => ({ ...prevState, [name]: value }));
 	};
 
+	// function getSelectedCountry() {
+	// 	return selectedCountry;
+	// }
+
 	const isFormFilled = () => {
+		console.log(selectedProvince, selectedCountry)
 		return (
 			formState.practiceName !== "" &&
 			formState.clinicType !== "" &&
 			formState.clinicSubType !== "" &&
-			formState.country !== "" &&
-			formState.province !== ""
+			selectedCountry !== "" &&
+			selectedProvince !== ""
 		);
 	};
 
@@ -72,10 +77,6 @@ export default function PracticeDetails() {
 			console.log("Please fill out all fields.");
 		}
 	};
-
-	const [selectedCountry, setSelectedCountry] = useState("Canada");
-	const [selectedProvince, setSelectedProvince] = useState("");
-	const [selectedShortName, setSelectedShortName] = useState("CA");
 
 	console.log(selectedCountry);
 	const handleCountryChange = (event) => {
@@ -139,7 +140,7 @@ export default function PracticeDetails() {
 								alignItems: "left",
 							}}
 						>
-							<Box component="form" sx={{ mt: 1 }}>
+							<Box sx={{ mt: 1 }}>
 								<Grid container spacing={12}>
 									<Grid item xs={3}>
 										<Typography variant="h5">
@@ -187,6 +188,7 @@ export default function PracticeDetails() {
 											Practice Phone{" "}
 										</Typography>
 										<PhoneInput
+											id="phone_num"
 											containerStyle={{ margin: "10px" }}
 											fullWidth
 											// fix me, label appear, similar to text fields
@@ -228,6 +230,7 @@ export default function PracticeDetails() {
 													(org) => {
 														return (
 															<MenuItem
+																id={org}
 																value={org}
 																onClick={() => {
 																	setOrgType(
@@ -259,10 +262,9 @@ export default function PracticeDetails() {
 												{" "}
 												Clinic Subtype{" "}
 											</InputLabel>
-											{/* TO-DO: fill with actual data */}
 											<Select
 												name="clinicSubType"
-												id="country-select"
+												id="clinicsubtype-select"
 												label="Clinic Subtype"
 												onChange={handleInputChange}
 											>
@@ -271,6 +273,7 @@ export default function PracticeDetails() {
 												).map((subType) => {
 													return (
 														<MenuItem
+															id={subType}
 															value={subType}
 															onClick={() => {
 																setOrgSubType(
@@ -311,18 +314,8 @@ export default function PracticeDetails() {
 											</strong>
 										</Typography>
 										<FormControl fullWidth>
-											{/* ENHANCE: auto complete component */}
-											{/* <Autocomplete
-												options={countries.getCountries()}
-												getOptionLabel={(option) => option.label}
-												value={value}
-												onClick={(event) => handleMenuItemClick(event, country.shortName)} 
-												onChange={handleCountryChange}
-												renderInput={(params) => (
-													<TextField {...params} label="Select an option" />
-												)}
-												/> */}
 											<Select
+												name="country"
 												labelId="country-label"
 												id="country-select"
 												value={selectedCountry}
@@ -367,8 +360,8 @@ export default function PracticeDetails() {
 													{" "}
 													State/Province{" "}
 												</InputLabel>
-												{/* TO-DO: fill with actual data */}
 												<Select
+													name="province"
 													labelId="province-label"
 													id="province-select"
 													value={selectedProvince}
@@ -383,6 +376,7 @@ export default function PracticeDetails() {
 														)
 														.map((state) => (
 															<MenuItem
+																id={state}
 																key={
 																	selectedShortName
 																}

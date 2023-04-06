@@ -76,7 +76,6 @@ export default function Registration() {
 		}
 
 		// TODO: Add new fields in the schema
-		// if (addUser(username, password, specialty)) {
 		if (addUser(username, password)) {
 			alert("User created successfully");
 			navigate("/registration/practice-details");
@@ -168,7 +167,7 @@ export default function Registration() {
 								onChange={(e) => setPassword(e.target.value)}
 								label="Password"
 								fullWidth
-								id="outlined-adornment-password"
+								id="password"
 								type={showPassword ? "text" : "password"}
 								// value={inputValue}
 								endAdornment={
@@ -202,7 +201,7 @@ export default function Registration() {
 								}}
 								label="Password"
 								fullWidth
-								id="outlined-adornment-password"
+								id="confirm-password"
 								type={showPassword ? "text" : "password"}
 								endAdornment={
 									<InputAdornment position="end">

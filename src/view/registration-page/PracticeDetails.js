@@ -1,7 +1,5 @@
 /** @format */
 
-// import brightsquidLogo from '../../img/brightsquid_logo.PNG';
-
 import * as React from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -26,7 +24,7 @@ import Copyright from "../assets/props/Copyrights.js";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 
-import useState from "react";
+import { useState } from "react";
 import customTheme from "../../style";
 import countries from "countrycitystatejson";
 import { OrgSubType } from "../assets/props/OrgSubTypeProp";
@@ -85,7 +83,6 @@ export default function PracticeDetails() {
 
 	const handleCountryChange = (event) => {
 		setSelectedCountry(event.target.value);
-
 		setSelectedProvince("");
 	};
 

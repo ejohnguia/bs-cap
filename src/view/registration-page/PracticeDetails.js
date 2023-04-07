@@ -55,7 +55,6 @@ export default function PracticeDetails() {
 	};
 
 	const isFormFilled = () => {
-		console.log(selectedProvince, selectedCountry);
 		return (
 			formState.practiceName !== "" &&
 			formState.orgType !== "" &&
@@ -68,7 +67,7 @@ export default function PracticeDetails() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (isFormFilled()) {
-			console.log("Form submitted!", formState);
+			alert("Form submitted!", formState);
 			addClinic(
 				formState.practiceName,
 				phoneNumber,
@@ -80,19 +79,12 @@ export default function PracticeDetails() {
 				formState.address
 			);
 		} else {
-			console.log("Please fill out all fields.");
+			alert("Please fill out all fields.");
 		}
 	};
 
-	console.log(selectedCountry);
 	const handleCountryChange = (event) => {
 		setSelectedCountry(event.target.value);
-
-		console.log(
-			countries
-				.getStatesByShort(selectedShortName)
-				.map((state) => console.log(state))
-		);
 
 		setSelectedProvince("");
 	};
@@ -102,7 +94,6 @@ export default function PracticeDetails() {
 	};
 
 	const handleMenuItemClick = (event, key) => {
-		console.log(key);
 		setSelectedShortName(key);
 	};
 

@@ -76,8 +76,6 @@ export default function Registration() {
 		} else {
 			alert("Could not create account. Please try again");
 		}
-
-		console.log(username, ", ", password, ", ", passwordConfirm);
 	}
 
 	return (

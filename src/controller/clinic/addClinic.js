@@ -35,7 +35,6 @@ export default async function addClinic(
 		});
 		return true;
 	} catch (error) {
-		console.error(error.response.data);
 		return false;
 	}
 }

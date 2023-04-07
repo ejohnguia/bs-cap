@@ -22,7 +22,6 @@ export default async function addUser(username, password, role, specialty) {
 		});
 		return true;
 	} catch (error) {
-		console.error(error.response.data);
 		return false;
 	}
 }

@@ -39,13 +39,10 @@ import Autocomplete from "@mui/material/Autocomplete";
 export default function PracticeDetails() {
 	const [photo, setPhoto] = useState(MedicalPhoto);
 	const [phoneNumber, setPhoneNumber] = useState(false);
-	// TODO: Consolidate orgType and formState
-	const [orgType, setOrgType] = useState("");
-	const [orgSubType, setOrgSubType] = useState("");
 	const [formState, setFormState] = useState({
 		practiceName: "",
-		clinicType: "",
-		clinicSubType: "",
+		orgType: "",
+		orgSubType: "",
 		city: "",
 		address: "",
 	});
@@ -67,8 +64,8 @@ export default function PracticeDetails() {
 		console.log(selectedProvince, selectedCountry);
 		return (
 			formState.practiceName !== "" &&
-			formState.clinicType !== "" &&
-			formState.clinicSubType !== "" &&
+			formState.orgType !== "" &&
+			formState.orgSubType !== "" &&
 			selectedCountry !== "" &&
 			selectedProvince !== ""
 		);
@@ -81,19 +78,8 @@ export default function PracticeDetails() {
 			addClinic(
 				formState.practiceName,
 				phoneNumber,
-				orgType,
-				orgSubType,
-				selectedCountry,
-				selectedProvince,
-				formState.city,
-				formState.address
-			);
-			console.log(
-				"Variables passed into addClinic function:",
-				formState.practiceName,
-				phoneNumber,
-				orgType,
-				orgSubType,
+				formState.orgType,
+				formState.orgSubType,
 				selectedCountry,
 				selectedProvince,
 				formState.city,
@@ -247,8 +233,8 @@ export default function PracticeDetails() {
 										<FormControl fullWidth>
 											<InputLabel>Clinic Type</InputLabel>
 											<Select
-												name="clinicType"
-												id="clinic-select"
+												name="orgType"
+												id="orgType-select"
 												label="Clinic Type"
 												onChange={handleInputChange}
 											>
@@ -258,11 +244,9 @@ export default function PracticeDetails() {
 															<MenuItem
 																id={org}
 																value={org}
-																onClick={() => {
-																	setOrgType(
-																		org
-																	);
-																}}
+																onClick={
+																	handleInputChange
+																}
 															>
 																{org}
 															</MenuItem>
@@ -289,23 +273,21 @@ export default function PracticeDetails() {
 												Clinic Subtype{" "}
 											</InputLabel>
 											<Select
-												name="clinicSubType"
-												id="clinicsubtype-select"
+												name="orgSubType"
+												id="orgSubType-select"
 												label="Clinic Subtype"
 												onChange={handleInputChange}
 											>
 												{OrgSubType.getSubTypeByOrg(
-													orgType
+													formState.orgType
 												).map((subType) => {
 													return (
 														<MenuItem
 															id={subType}
 															value={subType}
-															onClick={() => {
-																setOrgSubType(
-																	subType
-																);
-															}}
+															onClick={
+																handleInputChange
+															}
 														>
 															{subType}
 														</MenuItem>

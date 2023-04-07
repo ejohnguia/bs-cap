@@ -1,16 +1,13 @@
 /** @format */
-// import brightsquidLogo from '../../img/brightsquid_logo.PNG';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../App.css";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useNavigate } from "react-router-dom";
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
 import Copyright from "../assets/props/Copyrights.js";
@@ -20,9 +17,8 @@ import MedicalPhoto from "../assets/props/MedicalPhotoProp.js";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import HorizontalLinearStepper from "../../stepper";
@@ -45,7 +41,7 @@ import SpecialtiesList from "../assets/props/data/SpecialtiesList";
 
 export default function Registration() {
 	const navigate = useNavigate();
-	const [photo, setPhoto] = useState(MedicalPhoto);
+	const [photo] = useState(MedicalPhoto);
 
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -74,8 +70,6 @@ export default function Registration() {
 			alert("Please fill the password field");
 			return;
 		}
-
-		// TODO: Add new fields in the schema
 		if (addUser(username, password, role, specialty)) {
 			alert("User created successfully");
 			navigate("/registration/practice-details");
@@ -88,14 +82,8 @@ export default function Registration() {
 
 	return (
 		<ThemeProvider theme={customTheme}>
-			<Grid
-				container
-				component="main"
-				sx={{ height: "100%", width: "100%" }}
-				marginLeft={4}
-			>
+			<Grid container component="main" sx={{ height: "100vh" }}>
 				<CssBaseline />
-				{/* TO-DO: Fix imaging dimensions to replicate figma mock-ups */}
 				<Grid
 					item
 					xs={false}
@@ -112,15 +100,7 @@ export default function Registration() {
 						backgroundPosition: "center",
 					}}
 				/>
-				<Grid
-					item
-					xs={12}
-					sm={8}
-					md={9}
-					component={Paper}
-					elevation={6}
-					square
-				>
+				<Grid item xs={12} sm={8} md={9} square>
 					<Box
 						sx={{
 							my: 15,
@@ -130,9 +110,6 @@ export default function Registration() {
 							alignItems: "center",
 						}}
 					>
-						{/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-							{/* <LockOutlinedIcon /> */}
-						{/* </Avatar> */}
 						<Grid item xs={4} mt={4}>
 							<img
 								src={""}
@@ -222,7 +199,6 @@ export default function Registration() {
 									</InputAdornment>
 								}
 							/>
-							{/* About you section*/}
 
 							<Grid item xs={5}>
 								<Typography variant="body1" mt={7}>
@@ -280,22 +256,7 @@ export default function Registration() {
 									</FormControl>
 								</Grid>
 							</Grid>
-							{/* TO-DO: fill with actual data */}
-							{/* 
-							<Grid item xs={5} mt={5}>
-									
-									<Typography  mb={2}>Title <strong className='asterisk' style={{color: "red"}}> * </strong></Typography>
-									<FormControl fullWidth>
-									
-									<InputLabel> Title </InputLabel>
-									<Select id="clinic-select" label="Clinic Type">
-										<MenuItem value={0}>Dental</MenuItem>
-										<MenuItem value={0}>Family</MenuItem>
-										<MenuItem value={0}>Hospital</MenuItem>
-										<MenuItem value={0}>Mental Health </MenuItem>
-									</Select> 
-									</FormControl>
-									</Grid>*/}
+
 							<Button
 								onClick={handleSubmitForm}
 								id="next-steps-btn"

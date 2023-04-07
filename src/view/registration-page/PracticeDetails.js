@@ -31,6 +31,9 @@ import customTheme from "../../style";
 import countries from "countrycitystatejson";
 import { OrgSubType } from "../assets/props/OrgSubTypeProp";
 
+// Backend
+import addClinic from "../../controller/clinic/addClinic";
+
 import Autocomplete from "@mui/material/Autocomplete";
 
 export default function PracticeDetails() {
@@ -42,7 +45,9 @@ export default function PracticeDetails() {
 	const [formState, setFormState] = useState({
 		practiceName: "",
 		clinicType: "",
-		clinicSubType: ""
+		clinicSubType: "",
+		city: "",
+		address: "",
 	});
 
 	const [selectedCountry, setSelectedCountry] = useState("Canada");
@@ -59,7 +64,7 @@ export default function PracticeDetails() {
 	// }
 
 	const isFormFilled = () => {
-		console.log(selectedProvince, selectedCountry)
+		console.log(selectedProvince, selectedCountry);
 		return (
 			formState.practiceName !== "" &&
 			formState.clinicType !== "" &&
@@ -73,6 +78,27 @@ export default function PracticeDetails() {
 		event.preventDefault();
 		if (isFormFilled()) {
 			console.log("Form submitted!", formState);
+			addClinic(
+				formState.practiceName,
+				phoneNumber,
+				orgType,
+				orgSubType,
+				selectedCountry,
+				selectedProvince,
+				formState.city,
+				formState.address
+			);
+			console.log(
+				"Variables passed into addClinic function:",
+				formState.practiceName,
+				phoneNumber,
+				orgType,
+				orgSubType,
+				selectedCountry,
+				selectedProvince,
+				formState.city,
+				formState.address
+			);
 		} else {
 			console.log("Please fill out all fields.");
 		}
@@ -402,6 +428,7 @@ export default function PracticeDetails() {
 											id="city_name"
 											label="City"
 											name="city"
+											onChange={handleInputChange}
 										/>
 									</Grid>
 									<Grid item xs={5} mt={5}>
@@ -412,6 +439,7 @@ export default function PracticeDetails() {
 											id="address"
 											label="Address"
 											name="address"
+											onChange={handleInputChange}
 										/>
 									</Grid>
 								</Grid>
@@ -453,6 +481,7 @@ export default function PracticeDetails() {
 													? "primary"
 													: "inherit"
 											}
+											onClick={handleSubmit}
 										>
 											Next
 										</Button>

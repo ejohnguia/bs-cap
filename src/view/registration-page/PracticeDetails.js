@@ -11,11 +11,11 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import ThemeProvider from "@mui/material/styles";
 
 import FormControl from "@mui/material/FormControl";
 
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 
@@ -26,7 +26,7 @@ import Copyright from "../assets/props/Copyrights.js";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 
-import { useEffect, useState } from "react";
+import useState from "react";
 import customTheme from "../../style";
 import countries from "countrycitystatejson";
 import { OrgSubType } from "../assets/props/OrgSubTypeProp";
@@ -34,10 +34,8 @@ import { OrgSubType } from "../assets/props/OrgSubTypeProp";
 // Backend
 import addClinic from "../../controller/clinic/addClinic";
 
-import Autocomplete from "@mui/material/Autocomplete";
-
 export default function PracticeDetails() {
-	const [photo, setPhoto] = useState(MedicalPhoto);
+	const [photo] = useState(MedicalPhoto);
 	const [phoneNumber, setPhoneNumber] = useState(false);
 	const [formState, setFormState] = useState({
 		practiceName: "",
@@ -55,10 +53,6 @@ export default function PracticeDetails() {
 		const { name, value } = event.target;
 		setFormState((prevState) => ({ ...prevState, [name]: value }));
 	};
-
-	// function getSelectedCountry() {
-	// 	return selectedCountry;
-	// }
 
 	const isFormFilled = () => {
 		console.log(selectedProvince, selectedCountry);

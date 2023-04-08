@@ -48,6 +48,7 @@ export default function Registration() {
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [role, setRole] = useState("");
 	const [specialty, setSpecialty] = useState("");
+	const [passwordStrength, setPasswordStrength] = useState(0);
 
 	const [showPassword, setShowPassword] = useState(false);
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -55,6 +56,13 @@ export default function Registration() {
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
+
+	const handlePasswordChange = (event) => {
+		setPassword(event.target.value);
+		setPasswordStrength(event.target.value.length);
+		// For a Strong Password passwordStrength > 12
+		// console.log("in handlePasswordChange", passwordStrength);
+	  };
 
 	// Handles backend submission
 	function handleSubmitForm() {
@@ -70,6 +78,11 @@ export default function Registration() {
 			alert("Please fill the password field");
 			return;
 		}
+		// Checking for Strong Password
+		if (passwordStrength < 12) {
+			alert("Password is not Strong enough");
+			return;
+		}
 		if (addUser(username, password, role, specialty)) {
 			alert("User created successfully");
 			navigate("/registration/practice-details");
@@ -78,6 +91,7 @@ export default function Registration() {
 		}
 	}
 
+	
 	return (
 		<ThemeProvider theme={customTheme}>
 			<Grid container component="main" sx={{ height: "100vh" }}>
@@ -139,12 +153,12 @@ export default function Registration() {
 								Create a Password{" "}
 							</Typography>
 							<OutlinedInput
-								onChange={(e) => setPassword(e.target.value)}
+								// onChange={(e) => setPassword(e.target.value)} // Previous code Just incase I broke something // delete this if I didnt - Kylie
+								onChange={handlePasswordChange}
 								label="Password"
 								fullWidth
 								id="password"
 								type={showPassword ? "text" : "password"}
-								// value={inputValue}
 								endAdornment={
 									<InputAdornment position="end">
 										<IconButton

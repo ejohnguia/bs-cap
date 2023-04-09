@@ -25,6 +25,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import customTheme from "../../style";
 import countries from "countrycitystatejson";
 import { OrgSubType } from "../assets/props/OrgSubTypeProp";
@@ -33,6 +34,7 @@ import { OrgSubType } from "../assets/props/OrgSubTypeProp";
 import addClinic from "../../controller/clinic/addClinic";
 
 export default function PracticeDetails() {
+	const navigate = useNavigate();
 	const [photo] = useState(MedicalPhoto);
 	const [phoneNumber, setPhoneNumber] = useState(false);
 	const [formState, setFormState] = useState({
@@ -76,6 +78,7 @@ export default function PracticeDetails() {
 				formState.city,
 				formState.address
 			);
+			navigate("/registration/practice-details/end");
 		} else {
 			alert("Please fill out all fields.");
 		}
@@ -439,6 +442,8 @@ export default function PracticeDetails() {
 										<Button
 											id="next-btn"
 											variant="contained"
+											component={Link}
+											to="/registration/practice-details/end"
 											disabled={!isFormFilled()}
 											color={
 												isFormFilled()
@@ -446,7 +451,8 @@ export default function PracticeDetails() {
 													: "inherit"
 											}
 											onClick={handleSubmit}
-										>
+											
+										>	
 											Next
 										</Button>
 									</Grid>

@@ -414,30 +414,29 @@ export default function PracticeDetails() {
 								{/* Center the stepper */}
 								<Grid
 									container
-									spacing={10}
+									spacing={2}
 									alignItems="center"
 									justifyContent="center"
 								>
-									<Grid item xs={10} mt={5}>
+									<Grid item xs={12} mt={5}>
 										<HorizontalLinearStepper>
 											{" "}
 										</HorizontalLinearStepper>
 									</Grid>
-								</Grid>
-
+								</Grid>		
+							
 								{/* Back and next buttons */}
-								<Grid container spacing={12}>
-									<Grid item xs={10} mt={3}>
+								<Grid container spacing={2} >
+									<Grid item xs={12} sm={6} mt={3}>
 										<Button
 											id="back-btn"
 											variant="contained"
 											component={Link}
-											to="/registration"
-										>
+											to="/registration">
 											Back
 										</Button>
 									</Grid>
-									<Grid item xs={2} mt={3}>
+									<Grid item xs={12} sm={6} mt={3} >
 										{/* Need to check fields if form is complete */}
 										<Button
 											id="next-btn"
@@ -450,9 +449,7 @@ export default function PracticeDetails() {
 													? "primary"
 													: "inherit"
 											}
-											onClick={handleSubmit}
-											
-										>	
+											onClick={handleSubmit}>	
 											Next
 										</Button>
 									</Grid>

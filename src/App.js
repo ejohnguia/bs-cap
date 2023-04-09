@@ -6,6 +6,7 @@ import Welcome from "./view/welcome-page/Welcome";
 import Registration from "./view/registration-page/Registration";
 import PracticeDetails from "./view/registration-page/PracticeDetails";
 import SignInSide from "./view/sign-in-page/SignInSide";
+import End from "./view/end-page/End";
 // TODO: Create error page
 // import Error from "./view/error-page/Error";
 
@@ -18,6 +19,9 @@ function App() {
 			<Route exact path="/registration" element={<Registration />} />
 			<Route
 				exact path="/registration/practice-details" element={<PracticeDetails />}
+			/>
+			<Route
+				exact path="/registration/practice-details/end" element={<End />}
 			/>
 			<Route exact path="/sign-in" element={<SignInSide />} />
 			{/* <Route path="*" element={<Error />} /> */}

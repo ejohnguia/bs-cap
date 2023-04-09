@@ -9,6 +9,7 @@ import SignInSide from "./view/sign-in-page/SignInSide";
 import reportWebVitals from "./reportWebVitals";
 import Registration from "./view/registration-page/Registration"; // Page 2
 import PracticeDetails from "./view/registration-page/PracticeDetails"; // Page 3
+import End from "./view/end-page/End"; // Page 4
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

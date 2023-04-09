@@ -97,12 +97,18 @@ export default function PracticeDetails() {
 	return (
 		<form onSubmit={handleSubmit}>
 			<ThemeProvider theme={customTheme}>
-				<Grid container component="main" sx={{ height: "100vh" }}>
+
+			<Grid
+				container
+				component="main"
+			>
+				
 					<CssBaseline />
+
 					<Grid
 						item
 						xs={false}
-						sm={4}
+						sm={false}
 						md={3}
 						sx={{
 							backgroundImage: photo,
@@ -115,6 +121,7 @@ export default function PracticeDetails() {
 							backgroundPosition: "center",
 						}}
 					/>
+
 					<Grid
 						item
 						xs={12}
@@ -124,6 +131,8 @@ export default function PracticeDetails() {
 						elevation={6}
 						square
 					>
+						
+
 						{/* Right side*/}
 						<Box
 							sx={{
@@ -134,7 +143,7 @@ export default function PracticeDetails() {
 								alignItems: "left",
 							}}
 						>
-							<Box sx={{ mt: 1 }}>
+							<Box sx={{ mt: 1 }} component="form">
 								<Grid container spacing={12}>
 									<Grid item xs={3}>
 										<Typography variant="h5">
@@ -146,63 +155,59 @@ export default function PracticeDetails() {
 										{/* <img src={brightsquidLogo} width={141.8} height={30.8} alt="brightsquid"/> */}
 									</Grid>
 								</Grid>
-
-								{/* Practice Name and Practice Phone */}
-								<Grid container spacing={12}>
-									<Grid item xs={2}>
+								<Grid container spacing={2}>
+									<Grid item xs={12} >
 										<Typography variant="body1" mt={5}>
 											<strong> Practice Details</strong>
 										</Typography>
 									</Grid>
-
-									<Grid item xs={5} mt={7}>
-										<Typography variant="body1">
-											{" "}
-											Practice Name{" "}
-											<strong
-												className="asterisk"
-												style={{ color: "red" }}
-											>
+							
+									{/* Practice Name and Practice Phone */}
+									<Grid item xs={12} sm={6} >
+									<Typography variant="body1">
 												{" "}
-												*{" "}
-											</strong>
-										</Typography>
-										<TextField
-											margin="normal"
-											fullWidth
-											id="practice_name"
-											label="Practice Name"
-											name="practiceName"
-											onChange={handleInputChange}
-										/>
+												Practice Name{" "}
+												<strong
+													className="asterisk"
+													style={{ color: "red" }}
+												>
+													{" "}
+													*{" "}
+												</strong>
+											</Typography>
+											<TextField style={{ width: '50%' }}
+												margin="normal"
+												fullWidth
+												id="practice_name"
+												label="Practice Name"
+												name="practiceName"
+												onChange={handleInputChange}
+											/>								</Grid>
+									<Grid item xs={12} sm={6} >
+									<Typography variant="body1">
+												{" "}
+												Practice Phone{" "}
+											</Typography>
+											<PhoneInput 
+											
+												id="phone_num"
+												containerStyle={{ margin: "10px" }}
+												fullWidth
+												inputStyle={{ width: '50%' }}
+												specialLabel={""}
+												country={"ca"}
+												inputProps={{ shrink: "true" }}
+												disableDropdown={true}
+												value={phoneNumber}
+												onChange={setPhoneNumber}
+											/>								
+										</Grid>
 									</Grid>
-									<Grid item xs={5} mt={7}>
-										<Typography variant="body1">
-											{" "}
-											Practice Phone{" "}
-										</Typography>
-										<PhoneInput
-											id="phone_num"
-											containerStyle={{ margin: "10px" }}
-											fullWidth
-											// fix me, label appear, similar to text fields
-											specialLabel={""}
-											country={"ca"}
-											inputProps={{ shrink: "true" }}
-											disableDropdown={true}
-											value={phoneNumber}
-											onChange={setPhoneNumber}
-										/>
-									</Grid>
-								</Grid>
 
 								{/* Clinic Type and Clinic sub type */}
-								<Grid container spacing={12}>
-									<Grid item xs={2}>
-										{/* Empty space to align*/}
-									</Grid>
-									<Grid item xs={5} mt={5}>
-										<Typography mb={2}>
+								<Grid container spacing={2}>
+									<Grid item xs={12} sm={6}>
+									<Typography mb={2}>
 											Clinic Type
 											<strong
 												className="asterisk"
@@ -237,20 +242,21 @@ export default function PracticeDetails() {
 												)}
 											</Select>
 										</FormControl>
+										
 									</Grid>
-									<Grid item xs={5} mt={5}>
+									<Grid item xs={12} sm={6}>
 										<Typography mb={2}>
-											Clinic Subtype{" "}
-											<strong
-												className="asterisk"
-												style={{ color: "red" }}
-											>
-												{" "}
-												*{" "}
-											</strong>
+												Clinic Subtype{" "}
+												<strong
+													className="asterisk"
+													style={{ color: "red" }}
+												>
+													{" "}
+													*{" "}
+												</strong>
 										</Typography>
 										<FormControl fullWidth>
-											<InputLabel>
+										<InputLabel>
 												{" "}
 												Clinic Subtype{" "}
 											</InputLabel>
@@ -279,21 +285,20 @@ export default function PracticeDetails() {
 										</FormControl>
 									</Grid>
 								</Grid>
-
+								
 								{/* PRACTICE ADDRESS: Country, State/province, City and address*/}
-								<Grid container spacing={12}>
-									<Grid item xs={2}>
-										<Typography variant="body1" mt={7}>
+								<Grid container spacing={2}>
+								<Grid item xs={12}>
+									<Typography variant="body1" mt={5}>
 											{" "}
 											<strong>
 												{" "}
 												Practice Address{" "}
 											</strong>{" "}
-										</Typography>
-									</Grid>
-
-									<Grid item xs={5} mt={5}>
-										<Typography mb={2}>
+									</Typography>
+								</Grid>
+								<Grid item xs={12} sm={6}>
+								<Typography mb={2}>
 											Country
 											<strong
 												className="asterisk"
@@ -331,10 +336,9 @@ export default function PracticeDetails() {
 													))}
 											</Select>
 										</FormControl>
-									</Grid>
-
-									<Grid item xs={5}>
-										<Typography mb={2} mt={5}>
+								</Grid>
+								<Grid item xs={12} sm={6}>
+								<Typography mb={2}>
 											Province
 											<strong
 												className="asterisk"
@@ -377,15 +381,12 @@ export default function PracticeDetails() {
 														))}
 												</Select>
 											</FormControl>
-										)}
+										)}								
 									</Grid>
 								</Grid>
-
-								<Grid container spacing={12}>
-									<Grid item xs={2} />{" "}
-									{/* Empty grid item to align the City dropdown*/}
-									<Grid item xs={5} mt={5}>
-										<Typography>City</Typography>
+								<Grid container spacing={2}>
+									<Grid item xs={12} sm={6}>
+									<Typography mt={3}>City</Typography>
 										<TextField
 											margin="normal"
 											fullWidth
@@ -395,19 +396,18 @@ export default function PracticeDetails() {
 											onChange={handleInputChange}
 										/>
 									</Grid>
-									<Grid item xs={5} mt={5}>
-										<Typography>Address</Typography>
-										<TextField
-											margin="normal"
-											fullWidth
-											id="address"
-											label="Address"
-											name="address"
+									<Grid item xs={12} sm={6}>
+										<Typography mt={3}>Address</Typography>
+											<TextField
+												margin="normal"
+												fullWidth
+												id="address"
+												label="Address"
+												name="address"
 											onChange={handleInputChange}
-										/>
-									</Grid>
+										/>									
+										</Grid>
 								</Grid>
-
 								{/* Center the stepper */}
 								<Grid
 									container
@@ -424,7 +424,7 @@ export default function PracticeDetails() {
 
 								{/* Back and next buttons */}
 								<Grid container spacing={12}>
-									<Grid item xs={10} mt={5}>
+									<Grid item xs={10} mt={3}>
 										<Button
 											id="back-btn"
 											variant="contained"
@@ -434,7 +434,7 @@ export default function PracticeDetails() {
 											Back
 										</Button>
 									</Grid>
-									<Grid item xs={2} mt={5}>
+									<Grid item xs={2} mt={3}>
 										{/* Need to check fields if form is complete */}
 										<Button
 											id="next-btn"

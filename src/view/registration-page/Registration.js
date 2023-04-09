@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
+import useMediaQuery from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
@@ -94,12 +95,18 @@ export default function Registration() {
 	
 	return (
 		<ThemeProvider theme={customTheme}>
-			<Grid container component="main" sx={{ height: "100vh" }}>
+			<Grid
+				container
+				component="main"
+				// sx={{ height: "100%", width: "100%" }}
+				// marginLeft={4}
+			>
+
 				<CssBaseline />
 				<Grid
 					item
 					xs={false}
-					sm={4}
+					sm={false}
 					md={3}
 					sx={{
 						backgroundImage: photo,

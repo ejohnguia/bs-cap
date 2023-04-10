@@ -81,7 +81,8 @@ export default function Registration() {
 		}
 		// Checking for Strong Password
 		if (passwordStrength < 12) {
-			alert("Password is not Strong enough");
+			let x = 11 - passwordStrength;
+			alert("Password is not strong enough. Please add " + x + " more characters");
 			return;
 		}
 		if (addUser(username, password, role, specialty)) {

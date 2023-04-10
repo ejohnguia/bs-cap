@@ -12,7 +12,7 @@ import re
 class RegistrationTests(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Firefox() # use firefox or change to chrome
+        self.driver = webdriver.Chrome() # use firefox or change to chrome
 
         # links 
         self.main_link = "http://127.0.0.1:3000"
@@ -26,6 +26,7 @@ class RegistrationTests(unittest.TestCase):
     # ########################################### WELCOME PAGE UNIT TESTS ############################################
     # # TODO: test for information message (REQ-005)
     # # def testWelcomeInfoMssg(self):
+    
 
     # test for privacy link (REQ-003)
     def testWelcomePrivacyLink(self):
@@ -53,11 +54,112 @@ class RegistrationTests(unittest.TestCase):
 
         react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
 
-        react_app.find_element(By.ID, "setup-btn").click()                      # clicks on "Setup Account" button 
+        react_app.find_element(By.ID, "setup-btn").click()                 # clicks on "Next Steps" button 
         self.assertTrue(self.registration_link, self.driver.current_url)        # check if you're in the registration page 
     
     # ########################################### REGISTRATION PAGE UNIT TESTS ############################################
     # TODO: testing for password meter criteria (REQ-006 - REQ-012)
+    # User shouldn't be able to create an account with just lowercase letters and meeting minimum 11 characters
+    def testRegistrationPasswordMeterCriteriaLowercaseOnly(self):
+        self.driver.get(self.registration_link)
+
+        react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
+        
+        react_app.find_element(By.ID, "username").send_keys("Tester123")  # get username field
+
+        react_app.find_element(By.ID, "password").send_keys("asdfghbdsaf")
+        react_app.find_element(By.ID, "confirm-password").send_keys("asdfghbdsaf")
+
+        react_app.find_element(By.ID, "next-steps-btn").click()        # clicks on "Next Steps" button 
+        
+        WebDriverWait(self.driver, 5).until(EC.alert_is_present())     # wait for alert to appear
+        alert = self.driver.switch_to.alert          
+        self.assertNotEqual("User created successfully", alert.text)  # check if the user wasn't able to create account
+
+    # See if user is able to create an account with just uppercase letters and meeting minimum 11 characters
+    def testRegistrationPasswordMeterCriteriaUppercaseOnly(self):
+        self.driver.get(self.registration_link)
+
+        react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
+        
+        react_app.find_element(By.ID, "username").send_keys("Tester1234")     
+
+        react_app.find_element(By.ID, "password").send_keys("ASDFIWOERADOPFKAOSD")
+        react_app.find_element(By.ID, "confirm-password").send_keys("ASDFIWOERADOPFKAOSD")
+
+        react_app.find_element(By.ID, "next-steps-btn").click()        # clicks on "Next Steps" button 
+
+        WebDriverWait(self.driver, 5).until(EC.alert_is_present())     # wait for alert to appear
+        alert = self.driver.switch_to.alert  
+        self.assertNotEqual("User created successfully", alert.text)   
+
+    # User shouldn't be able to create an account with just numbers
+    def testRegistrationPasswordMeterCriteriaNumbersOnly(self):
+        self.driver.get(self.registration_link)
+
+        react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
+        
+        react_app.find_element(By.ID, "username").send_keys("Tester12345")
+
+        react_app.find_element(By.ID, "password").send_keys("18422304231")
+        react_app.find_element(By.ID, "confirm-password").send_keys("18422304231")
+
+        react_app.find_element(By.ID, "next-steps-btn").click()        # clicks on "Next Steps" button 
+
+        WebDriverWait(self.driver, 5).until(EC.alert_is_present())     # wait for alert to appear
+        alert = self.driver.switch_to.alert   
+        self.assertNotEqual("User created successfully", alert.text)   
+
+    # User shouldn't be able to create an account with just special chars
+    def testRegistrationPasswordMeterCriteriaSpecialCharOnly(self):
+        self.driver.get(self.registration_link)
+
+        react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
+
+        user_field = react_app.find_element(By.ID, "username").send_keys("Tester123")
+
+        react_app.find_element(By.ID, "password").send_keys("$&**@(#)$)@$(!)")
+        react_app.find_element(By.ID, "confirm-password").send_keys("$&**@(#)$)@$(!)")
+
+        react_app.find_element(By.ID, "next-steps-btn").click()                 # click "Next Steps" button
+        WebDriverWait(self.driver, 5).until(EC.alert_is_present())              # wait for alert to appear
+        alert = self.driver.switch_to.alert                                     # switch to alert window
+    
+        self.assertNotEqual("User created successfully", alert.text)   
+
+    # Same characters i should fail
+    def testRegistrationPasswordWeakSameChar(self):
+        self.driver.get(self.registration_link)
+
+        react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
+
+        react_app.find_element(By.ID, "username").send_keys("Tester123456")
+
+        react_app.find_element(By.ID, "password").send_keys("uuuuuuuuuuuu")
+        react_app.find_element(By.ID, "confirm-password").send_keys("uuuuuuuuuuuu")
+
+        react_app.find_element(By.ID, "next-steps-btn").click()                 # click "Next Steps" button
+        WebDriverWait(self.driver, 5).until(EC.alert_is_present())              # wait for alert to appear
+        alert = self.driver.switch_to.alert                                     # switch to alert window
+    
+        self.assertNotEqual("User created successfully", alert.text)   
+
+    def testRegistrationPasswordWeakLessThan11(self):
+        self.driver.get(self.registration_link)
+
+        react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
+
+        react_app.find_element(By.ID, "username").send_keys("Tester1234567")
+
+        react_app.find_element(By.ID, "password").send_keys("AsdFgv!2")
+        react_app.find_element(By.ID, "confirm-password").send_keys("AsdFgv!2")
+
+        react_app.find_element(By.ID, "next-steps-btn").click()                 # click "Next Steps" button
+        WebDriverWait(self.driver, 5).until(EC.alert_is_present())              # wait for alert to appear
+        alert = self.driver.switch_to.alert                                     # switch to alert window
+    
+        self.assertEqual("Password is not strong enough. Please add 3 more characters", alert.text)
+
     # test for privacy link (REQ-003)
     def testRegistrationPrivacyLink(self):
         self.driver.get(self.registration_link)
@@ -101,7 +203,7 @@ class RegistrationTests(unittest.TestCase):
         
         WebDriverWait(self.driver, 3).until(EC.alert_is_present())
         alert = self.driver.switch_to.alert
-        self.assertEquals("Passwords do not match!", alert.text)
+        self.assertEqual("Passwords do not match!", alert.text)
 
     # test if password is entered (REQ-014) 
     def testRegistrationEmptyPassError(self):
@@ -116,7 +218,7 @@ class RegistrationTests(unittest.TestCase):
         
         WebDriverWait(self.driver, 3).until(EC.alert_is_present())      
         alert = self.driver.switch_to.alert
-        self.assertEquals("Please fill the password field", alert.text)
+        self.assertEqual("Please fill the password field", alert.text)
 
     # test next button (REQ-001)    
     def testRegistrationNextStepsButton(self):
@@ -133,7 +235,7 @@ class RegistrationTests(unittest.TestCase):
         
         react_app.find_element(By.ID, "next-steps-btn").click()                 # click "Next Steps" button
         
-        WebDriverWait(self.driver, 5).until(EC.alert_is_present())              # wait for alarm to appear
+        WebDriverWait(self.driver, 5).until(EC.alert_is_present())              # wait for alert to appear
         alert = self.driver.switch_to.alert                                     # switch to alert window
         alert.accept()                                                          # accept the alert to close
 
@@ -164,9 +266,9 @@ class RegistrationTests(unittest.TestCase):
     def testPracticeDetailsPageNextButtonEmptyFields(self): 
         self.driver.get(self.practice_details_link)
         react_app = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "root")))
-  
-        attr = react_app.find_element(By.ID, "next-btn").get_attribute("disabled") # check if button is disabled
-        self.assertTrue(attr, "disabled")                               
+        time.sleep(5)
+        attr = react_app.find_element(By.ID, "next-btn").get_attribute("aria-disabled") # check if button is disabled
+        self.assertEqual(attr, "true")                               
 
     # test next button after all required fields are filled (REQ-001)
     def testPracticeDetailsPageNextButtonRequiredFields(self): 
@@ -175,9 +277,9 @@ class RegistrationTests(unittest.TestCase):
         keyDown = ActionChains(react_app)
 
         # obtain all required fields
-        practice_name = react_app.find_element(By.ID, "practice_name")           # get practice name field
-        clinic_type = react_app.find_element(By.ID, "clinic-select")            # get clinic type field
-        clinic_subtype = react_app.find_element(By.ID, "clinicsubtype-select")  # get subtype field
+        practice_name = react_app.find_element(By.ID, "practice_name")          # get practice name field
+        clinic_type = react_app.find_element(By.ID, "orgType-select")            # get clinic type field
+        clinic_subtype = react_app.find_element(By.ID, "orgSubType-select")     # get subtype field
         province = react_app.find_element(By.ID, "province-select")             # get province field
 
         # fill in fields with values 
@@ -185,12 +287,12 @@ class RegistrationTests(unittest.TestCase):
 
         # Click an option for each dropdown and add a 2 second delay in each
         clinic_type.click()
-        clinic_menu = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "menu-clinicType")))        
+        clinic_menu = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "menu-orgType")))        
         clinic_menu.find_element(By.ID, "Physician's Office").send_keys(Keys.RETURN)
         time.sleep(2)   
 
         clinic_subtype.click()
-        subtype_menu = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "menu-clinicSubType")))        
+        subtype_menu = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "menu-orgSubType")))        
         subtype_menu.find_element(By.ID, "General Practice").send_keys(Keys.RETURN)
         time.sleep(2)  
     
@@ -225,7 +327,7 @@ class RegistrationTests(unittest.TestCase):
         phone_val = (phone.get_attribute("value"))               # get the value from the text field
         clean_number = re.sub(r"[\(\)\+\-]", "", phone_val)      # remove the format of the phone number with regex 
         clean_number = clean_number.replace(" ", "")             # remove any spaces
-        self.assertEquals(clean_number.isdigit(), True)          # check after all format is removed, that 
+        self.assertEqual(clean_number.isdigit(), True)          # check after all format is removed, that 
                                                                  # they're only numbers 
 
     def tearDown(self):

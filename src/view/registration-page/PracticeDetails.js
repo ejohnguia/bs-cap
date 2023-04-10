@@ -24,7 +24,7 @@ import Copyright from "../assets/props/Copyrights.js";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import customTheme from "../../style";
 import countries from "countrycitystatejson";
@@ -34,6 +34,21 @@ import { OrgSubType } from "../assets/props/OrgSubTypeProp";
 import addClinic from "../../controller/clinic/addClinic";
 
 export default function PracticeDetails() {
+	const [formData, setFormData] = useState(() => {
+		const storedData = localStorage.getItem('formData');
+		return storedData ? JSON.parse(storedData) : { name: '', email: '' };
+	  });
+
+	useEffect(() => {
+		const handleInput = () => {
+		  localStorage.setItem('formData', JSON.stringify(formData));
+		};
+		window.addEventListener('input', handleInput);
+		return () => {
+		  window.removeEventListener('input', handleInput);
+		};
+	  }, [formData]);
+	  
 	const navigate = useNavigate();
 	const [photo] = useState(MedicalPhoto);
 	const [phoneNumber, setPhoneNumber] = useState(false);
@@ -67,7 +82,7 @@ export default function PracticeDetails() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (isFormFilled()) {
-			alert("Form submitted!", formState);
+			// alert("Form submitted!", formState);
 			addClinic(
 				formState.practiceName,
 				phoneNumber,

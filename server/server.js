@@ -6,12 +6,13 @@ const mongoose = require("mongoose");
 const Router = require("./routes");
 
 const app = express();
-require("dotenv").config();
+// Not used anymore for project upload and usage
+// require("dotenv").config();
 
 app.use(express.json());
 app.use(cors());
 
-const uri = process.env.DB_URI;
+const uri = "mongodb+srv://admin:yPZeikQsfKsDDzDZ@user-db.rogeokl.mongodb.net/";
 
 mongoose.connect(uri, {
 	useNewUrlParser: true,

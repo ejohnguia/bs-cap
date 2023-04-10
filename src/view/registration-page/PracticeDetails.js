@@ -193,7 +193,7 @@ export default function PracticeDetails() {
 													*{" "}
 												</strong>
 											</Typography>
-											<TextField style={{ width: '50%' }}
+											<TextField 
 												margin="normal"
 												fullWidth
 												id="practice_name"
@@ -207,11 +207,10 @@ export default function PracticeDetails() {
 												Practice Phone{" "}
 											</Typography>
 											<PhoneInput 
-											
 												id="phone_num"
-												containerStyle={{ margin: "10px" }}
+												containerStyle={{ marginTop: "15px" }}
 												fullWidth
-												inputStyle={{ width: '50%' }}
+												inputStyle={{ width: '100%' }}
 												specialLabel={""}
 												country={"ca"}
 												inputProps={{ shrink: "true" }}
@@ -441,7 +440,7 @@ export default function PracticeDetails() {
 								</Grid>		
 							
 								{/* Back and next buttons */}
-								<Grid container spacing={2} >
+								<Grid container spacing={2}>
 									<Grid item xs={12} sm={6} mt={3}>
 										<Button
 											id="back-btn"
@@ -451,7 +450,7 @@ export default function PracticeDetails() {
 											Back
 										</Button>
 									</Grid>
-									<Grid item xs={12} sm={6} mt={3} >
+									<Grid item xs={12} sm={6} mt={3} className='align-right'>
 										{/* Need to check fields if form is complete */}
 										<Button
 											id="next-btn"

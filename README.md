@@ -4,8 +4,6 @@
 
 Registration and login system for Brightsquid Capstone.
 
-The website has been deployed on Netlify: [bs-cap](https://bs-cap.netlify.app/)
-
 Stack used: [MongoDB](www.mongodb.com/), [Express](https://expressjs.com/), [React](https://reactjs.org/), [Node.js](https://nodejs.org/en/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

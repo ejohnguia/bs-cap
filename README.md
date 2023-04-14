@@ -139,7 +139,7 @@ pip freeze > requirements.txt
 `pip install selenium`
 3. Open the project folder:
 `cd brightsquid-capstone`
-4. Go into the “tests” directory of the project folder
+4. Go into the `tests` directory of the project folder
 5. To run all tests on each page, run:
 `python .\registration_tests.py`
 6. (Optional) Run only tests for Welcome Page:

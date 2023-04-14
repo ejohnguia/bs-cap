@@ -132,17 +132,17 @@ To save the packages in a `requirements.txt` file:
 pip freeze > requirements.txt
 ```
 
-## TESTS
+## Unit Tests
 ### How To Run
-1. Open a terminal \
-2.Install Python bindings for Selenium \
+1. Open a terminal\
+2. Install Python bindings for Selenium:
 `pip install selenium`
-3.Open the project folder \
+3. Open the project folder:
 `cd brightsquid-capstone`
 4. Go into the “tests” directory of the project folder\
-5. To run all tests on each page, run:\
+5. To run all tests on each page, run:
 `python .\registration_tests.py`
-6. (Optional) Run only tests for Welcome Page:\
+6. (Optional) Run only tests for Welcome Page:
 `python .\registration_tests.py WelcomePageTests`
 7. (Optional) Run only tests for User Registration Page:\
 `python .\registration_tests.py RegistrationPageTests`

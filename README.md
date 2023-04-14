@@ -131,3 +131,24 @@ To save the packages in a `requirements.txt` file:
 ```ps
 pip freeze > requirements.txt
 ```
+
+## TESTS
+### How To Run
+1. Open a terminal
+2.Install Python bindings for Selenium
+`pip install selenium`
+3.Open the project folder
+`cd brightsquid-capstone`
+4. Go into the “tests” directory of the project folder
+5. To run all tests on each page, run:
+`python .\registration_tests.py`
+6. (Optional) Run only tests for Welcome Page
+`python .\registration_tests.py WelcomePageTests`
+7. (Optional) Run only tests for User Registration Page
+`python .\registration_tests.py RegistrationPageTests`
+8. (Optional) Run only tests for Practice Details Page
+`python .\registration_tests.py PracticeDetailsPageTests`
+
+**Note:** tests will run on Chrome. If you’re wanting to change the type of browser you wanted to run own (i.e. to Firefox), open registration_tests.py with a text editor, CTRL+F and search for webdriver.Chrome() and change it to webdriver.Firefox()
+
+More information can be found here: https://selenium-python.readthedocs.io/installation.html
